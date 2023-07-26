@@ -11,7 +11,7 @@ export function Header() {
 
         <Logo>
           <BsHexagonFill />
-          <h1>food explorer</h1>
+          <span>food explorer</span>
         </Logo>
       
         <Receipt>

@@ -1,20 +1,18 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
-    
+    align-items: center;
     background: ${({ theme }) => theme.COLORS.DARK_600};
+    display: flex;
 
     height: 7.7rem;
+    justify-content: space-between;
     width: 100%;
     
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-
     p {
-        font-family: 'Roboto', serif;
         color: ${({ theme }) => theme.COLORS.LIGHT_100};
 
+        font-family: 'Roboto', serif;
         font-size: 1.1rem;
     
         margin-right: 2rem;
@@ -22,22 +20,20 @@ export const Container = styled.div`
 `;
 
 export const Logo = styled.div`
-    display: flex;
     align-items: center;
-
     color: ${({ theme }) => theme.COLORS.LIGHT_100};
+    display: flex;
 
     svg {
         fill: ${({ theme }) => theme.COLORS.LIGHT_700};
 
         height: 1.8rem;
-        width: 2.2rem;
-
-        margin-right: 0.6rem;
         margin-left: 3rem;
+        margin-right: 0.6rem;
+        width: 2.2rem;
     }
 
-    h3 {
+    span {
         color: ${({ theme }) => theme.COLORS.LIGHT_700};
 
         font-family: 'Roboto', serif;

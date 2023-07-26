@@ -6,7 +6,7 @@ export function Footer() {
     <Container>
       <Logo>
         <BsHexagonFill />
-        <h3>food explorer</h3>
+        <span>food explorer</span>
       </Logo>
         <p>© 2023 - Todos os direitos reservados.</p>
     </Container>
