@@ -4,6 +4,7 @@ import { PiCaretLeft } from "react-icons/pi";
 import { ButtonText } from "../../components/ButtonText";
 import { Section } from "../../components/Section";
 import { Tag } from "../../components/Tag";
+import { Counter } from "../../components/Counter";
 import { Button } from "../../components/Button";
 import { Footer } from "../../components/Footer";
 
@@ -28,6 +29,7 @@ export function Dishes() {
             <Tag title="cebola" />
           </Section>
 
+          <Counter />
           <Button title="pedir ∙ R$ 25,00" />
 
         </Content>

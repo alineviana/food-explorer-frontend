@@ -6,14 +6,14 @@ export const Container = styled.div`
     height: 100vh;
     width: 100%;
 
-    grid-template-rows: auto 42.8rem;
+    grid-template-rows: 11.4rem auto 7.7rem;
     grid-template-areas: 
     "header"
     "content"
     "footer";
 
     > main {
-        grid-area: auto;
+        grid-area: content;
     }
 `;
 
@@ -24,12 +24,17 @@ export const Link = styled.div`
     display: flex;
 
     margin-top: 3.5rem;
-    margin-left: 2rem;
+    margin-left: 5.6rem;
 
     svg {
-        height: 2.2rem;
+        align-content: center;
+        height: 3.2rem;
         margin-right: 0.5rem;
         width: 1.2rem;
+    }
+
+    button {
+        font-weight: 300;
     }
 `;
 
@@ -50,14 +55,15 @@ export const Content = styled.div`
     }
 
     > h1 {
-        font-size: 2.6rem;
+        font-size: 2.7rem;
         font-weight: 400;
-        padding-top: 1.6rem;
+        margin-top: 1.6rem;
     }
 
     > p {
+        font-size: 1.6rem;
         font-weight: 300;
-        padding: 1rem 5.6rem 0;
+        padding: 2.4rem 5.6rem;
     }
 
     > button:nth-last-child(1) {
@@ -67,7 +73,7 @@ export const Content = styled.div`
         font-family: 'Poppins', sans-serif; 
         font-weight: 400;
         height: 4.5rem;
-        margin-bottom: 5.4rem;
+        margin: 3.2rem 0 5.4rem;
         width: 18.8rem;
     }
 `;
