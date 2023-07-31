@@ -1,11 +1,7 @@
-import { Container, Content, Link } from "./styles";
+import { Container, Content } from "./styles";
 import { Header } from "../../components/Header";
-import { PiCaretLeft } from "react-icons/pi";
-import { ButtonText } from "../../components/ButtonText";
 import { Section } from "../../components/Section";
-import { Tag } from "../../components/Tag";
-import { Counter } from "../../components/Counter";
-import { Button } from "../../components/Button";
+import { Dish } from "../../components/Dish";
 import { Footer } from "../../components/Footer";
 
 export function Dishes() {
@@ -13,30 +9,32 @@ export function Dishes() {
     <Container>
       <Header />
 
-      <main>        
+      <main>
         <Content>
-          <Link>
-            <PiCaretLeft />
-            <ButtonText title="voltar" />
-          </Link>
           
-          <img src="./src/assets/ravanello.png" alt="Imagem Salada Ravanello" />
-          <h1>Salada Ravanello</h1>
-          <p>Rabanetes, folhas verdes e molho agridoce salpicados com gergelim.</p>
-
           <Section>
-            <Tag title="alface" />
-            <Tag title="cebola" />
+            
+            <Dish
+              data={{
+                title: "Salada Ravanello",
+                text: "Rabanetes, folhas verdes e molho agridoce salpicados com gergelim.",
+                tags: [
+                  { id: "1", name: "alface" },
+                  { id: "2", name: "cebola" },
+                  { id: "3", name: "pão naan" },
+                  { id: "4", name: "pepino" },
+                  { id: "5", name: "rabanete" },
+                  { id: "6", name: "tomate" },
+                ],
+              }}
+            />            
           </Section>
 
-          <Counter />
-          <Button title="pedir ∙ R$ 25,00" />
-
         </Content>
-
       </main>
-
+      
       <Footer />
+      
     </Container>
   );
 }

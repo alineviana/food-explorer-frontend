@@ -1,13 +1,19 @@
-import { Container } from "./style";
+import { Container, Count } from "./style";
 import { FiMinus } from 'react-icons/fi';
 import { FiPlus } from 'react-icons/fi';
 
 export function Counter() {
     return(
         <Container>
-            <FiMinus />
+            <Count>
+                <FiMinus />
+            </Count>
+            
                 <span>01</span>
-            <FiPlus />
+            
+            <Count>
+                <FiPlus />
+            </Count>
         </Container>
     )
 }

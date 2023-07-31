@@ -14,6 +14,6 @@ export const Container = styled.button`
     width: 100%;
 
     &:disabled {
-        opacity: 0.5;
+        opacity: 1;
     }
 `;

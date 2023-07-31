@@ -5,7 +5,8 @@ export const Container = styled.span`
     border-radius: 0.5rem;
     color: ${({ theme }) => theme.COLORS.LIGHT_100};
 
+    align-self: center;
     font-size: 1.2rem;
     margin-right: 0.6rem;
-    padding: 0.5rem 1.4rem;
+    padding: 0.5rem 1rem;
 `;

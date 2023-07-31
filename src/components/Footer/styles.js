@@ -4,6 +4,7 @@ export const Container = styled.div`
     align-items: center;
     background: ${({ theme }) => theme.COLORS.DARK_600};
     display: flex;
+    grid-area: footer;
 
     height: 7.7rem;
     justify-content: space-between;
