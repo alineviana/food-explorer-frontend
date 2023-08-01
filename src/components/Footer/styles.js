@@ -38,7 +38,7 @@ export const Logo = styled.div`
         color: ${({ theme }) => theme.COLORS.LIGHT_700};
 
         font-family: 'Roboto', serif;
-        font-size: 1.52rem;
+        font-size: 1.5rem;
         font-weight: bold;
     }
 `;

@@ -93,15 +93,18 @@ export const Info = styled.div`
 export const Order = styled.div`
     display: flex;
     align-items: flex-end;
-    margin: 4.8rem 0 5.4rem;   
-
+    margin: 4.8rem 0 5.4rem;
+    
     button:nth-child(2) {
+        align-items: center;
         background-color: ${({ theme }) => theme.COLORS.TOMATO_100};
         color: ${({ theme }) => theme.COLORS.LIGHT_100};
+        display: flex;
         font-size: 1.1rem;
         font-family: 'Poppins', sans-serif; 
         font-weight: 400;
+        justify-content: space-evenly;
         height: 3.7rem;
-        width: 18.8rem;
+        width: 18rem;
     }
 `;
