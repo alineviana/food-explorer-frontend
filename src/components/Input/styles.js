@@ -12,13 +12,17 @@ export const Container = styled.div`
     width: 100%;
 
     > input {
-        height: 4.8rem;
-        width: 100%;
-
         background: transparent;
         border: 0;
         
+        color: ${({ theme }) => theme.COLORS.LIGHT_300};
+        font-family: 'Roboto', sans-serif; 
+        font-size: 1.6rem;
+        font-weight: 400;
+
+        height: 4.8rem;
         padding: 1.6rem;
+        width: 100%;
 
         &:placeholder {
             color: ${({ theme }) => theme.COLORS.LIGHT_500};

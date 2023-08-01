@@ -22,13 +22,6 @@ export const Form = styled.form`
         display: none;
     }
 
-    input {
-        color: ${({ theme }) => theme.COLORS.LIGHT_300};
-        font-family: 'Poppins', sans-serif; 
-        font-size: 1.4rem;
-        font-weight: 400;
-    }
-
     button {
         background-color: ${({ theme }) => theme.COLORS.TOMATO_100};
         border-radius: 0.5rem;
