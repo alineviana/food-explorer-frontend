@@ -3,11 +3,9 @@ import { PiCaretLeft } from "react-icons/pi";
 import { ButtonText } from "../../components/ButtonText";
 import imgRavanello from '../../assets/ravanello.png';
 import { Tag } from "../Tag";
-import { Counter } from "../Counter";
 import { Button } from "../Button";
-import { PiReceiptBold } from "react-icons/pi";
 
-export function Dish({ data, ...rest }) {
+export function DishAdmin({ data, ...rest }) {
   return (
     <Container {...rest}>
       <Link>
@@ -33,10 +31,8 @@ export function Dish({ data, ...rest }) {
     )}
 
         <Order>
-          <Counter />
-          <Button 
-            icon={PiReceiptBold}
-            title="pedir ∙ R$ 25,00"
+          <Button
+            title="Editar prato"
           />
         </Order>
 
