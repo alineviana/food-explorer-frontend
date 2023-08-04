@@ -3,13 +3,13 @@ import ReactDOM from 'react-dom/client';
 import { ThemeProvider } from 'styled-components';
 import theme from './styles/theme';
 import GlobalStyles from './styles/global';
-import { DishesAdmin } from './pages/DishesAdmin';
+import { NewDish } from './pages/NewDish';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <ThemeProvider theme={theme}>
       <GlobalStyles />
-      <DishesAdmin />
+      <NewDish />
     </ThemeProvider>
   </React.StrictMode>,
 )

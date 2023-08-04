@@ -17,6 +17,14 @@ export const Container = styled.div`
         font-size: 1.1rem;
     
         margin-right: 2rem;
+        width: 19rem;
+    }
+
+    @media(min-width: 1024px) {
+        p {
+            font-size: 1.4rem;
+            width: 25rem;
+        }
     }
 `;
 
@@ -24,6 +32,7 @@ export const Logo = styled.div`
     align-items: center;
     color: ${({ theme }) => theme.COLORS.LIGHT_100};
     display: flex;
+    width: 15rem;
 
     svg {
         fill: ${({ theme }) => theme.COLORS.LIGHT_700};
@@ -40,5 +49,19 @@ export const Logo = styled.div`
         font-family: 'Roboto', serif;
         font-size: 1.5rem;
         font-weight: bold;
+    }
+
+    @media(min-width: 1024px) {
+        width: 30rem;
+
+        svg {
+            height: 3rem;
+            margin-right: 1rem;
+            width: 3rem;
+        }
+
+        span {
+            font-size: 2.4rem;
+        }
     }
 `;

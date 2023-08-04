@@ -24,7 +24,7 @@ export const Container = styled.div`
         padding: 1.6rem;
         width: 100%;
 
-        &:placeholder {
+        &::placeholder {
             color: ${({ theme }) => theme.COLORS.LIGHT_500};
         }
     }
