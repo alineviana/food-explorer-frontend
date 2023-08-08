@@ -1,4 +1,4 @@
-import { Container, Content, Link, Form } from "./styles";
+import { Container, Form } from "./styles";
 import { HeaderAdmin } from "../../components/HeaderAdmin";
 import { PiCaretLeft } from "react-icons/pi";
 import { ButtonText } from "../../components/ButtonText";
@@ -14,26 +14,32 @@ export function NewDish() {
   return (
     <Container>
       <HeaderAdmin />
-      <Content>
-        <main>
-          <Link>
+
+      <main>
+        <Form>
+          <header>
             <PiCaretLeft />
             <ButtonText title="voltar" />
-          </Link>
-          <Form>
-            <h1>Novo Prato</h1>
+          </header>
 
-            <div className="inputs">
-              <label className="imagem">
+          <h1>Novo Prato</h1>
+
+          <div className="dish_wrapper">
+            <div className="dish_image">
+              <label>
                 Imagem do prato
                 <Input placeholder="Selecione imagem" icon={PiUploadSimple} />
               </label>
+            </div>
 
+            <div className="dish_name">
               <label>
                 Nome
-                <Input placeholder="Ex.: Salada Ceasar" />
+                <Input type="text" placeholder="Ex.: Salada Ceasar" />
               </label>
+            </div>
 
+            <div className="dish_category">
               <label>
                 Categoria
                 <select>
@@ -43,28 +49,37 @@ export function NewDish() {
                 </select>
               </label>
             </div>
+          </div>
 
-            <Section title="Ingredientes">
-              <div className="tags">
-                <Ingredients value="Pão Naan" />
-                <Ingredients placeholder="Adicionar" isNew />
-              </div>
+          <div className="dish_information">
+            <div className="ingredients">
+              <Section title="Ingredientes">
+                <div className="tags">
+                  <Ingredients value="Pão Naan" />
+                  <Ingredients placeholder="Adicionar" isNew />
+                </div>
+              </Section>
+            </div>
 
+            <div className="price">
               <label>
                 Preço
-                <Input placeholder="R$ 0,00" />
+                <Input type="number" placeholder="R$ 00,00" />
               </label>
-            </Section>
+            </div>
+          </div>
 
-            <label>
-              Descrição
-              <TextArea placeholder="Fale brevemente sobre o prato, seus ingredientes e composição" />
-            </label>
+          <label>
+            Descrição
+            <TextArea placeholder="Fale brevemente sobre o prato, seus ingredientes e composição" />
+          </label>
 
+          <div className="save_button">
             <Button title="Salvar alterações" />
-          </Form>
-        </main>
-      </Content>
+          </div>
+        </Form>
+      </main>
+
       <Footer />
     </Container>
   );

@@ -106,6 +106,9 @@ export const Receipt = styled.button`
         justify-content: center;
         margin-top: 4rem;
         padding: 1.6rem;
+    }
+    
+    @media(min-width: 1280px) {
         width: 21.6rem;
     }
 `;
@@ -118,8 +121,8 @@ export const Logout = styled.button`
         border: none;
         color: ${({ theme }) => theme.COLORS.LIGHT_100};
         display: flex;
-        height: 3.2rem;
+        height: 2.2rem;
         margin-top: 6rem;
-        width: 3.2rem;
+        width: 2.2rem;
     }
 `;

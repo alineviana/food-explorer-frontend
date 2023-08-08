@@ -11,105 +11,55 @@ export const Container = styled.div`
     "content"
     "footer";
 
-    .tags {
-        background-color: ${({ theme }) => theme.COLORS.DARK_800};
-        border-radius: 8px;
-        display: flex;
-        flex-wrap: wrap;
-        gap: 1rem;
-        justify-content: flex-start;
-        margin-top: 1.6rem;
-        padding: 0.8rem;
+    main {
+        background-color: ${({ theme }) => theme.COLORS.DARK_100};
+        grid-area: content;
+        width: 100%;
     }
 `;
 
-export const Content = styled.div`
-    margin: 1rem 3.2rem 0;
+export const Form = styled.form`
+    background-color: ${({ theme }) => theme.COLORS.DARK_100};
+    margin: auto 3.2rem;
+
+    header {
+        align-items: flex-end;
+        display: flex;
+        margin: 1rem 0 2.4rem 0;
+
+        svg {
+            color: ${({ theme }) => theme.COLORS.LIGHT_100};
+            height: 2.2rem;
+            margin-top: 1rem;
+            width: 2.2rem;
+        }
+
+        button {
+            font-size: 1.6rem;
+        }
+    }
 
     h1 {
         color: ${({ theme }) => theme.COLORS.LIGHT_400};
         font-family: 'Roboto', serif;
         font-size: 2.4rem;
         font-weight: 500;
-        margin-bottom: 2.4rem;
+        margin: 0 0 2.4rem 0;
     }
 
-    input {
-        background-color: ${({ theme }) => theme.COLORS.DARK_800};
-        color: ${({ theme }) => theme.COLORS.LIGHT_500};
-        border-radius: 8px;
-    }
-
-    .inputs {
-        display: flex;
-        flex-direction: column;
-
+    .dish_image {
         svg {
             color: ${({ theme }) => theme.COLORS.LIGHT_100};
+            height: 2.4rem;
+            width: 2.4rem;
         }
-    }
 
-    button:nth-child(5) {
-        background-color: ${({ theme }) => theme.COLORS.TOMATO_400};
-        color: ${({ theme }) => theme.COLORS.LIGHT_100};
-        margin: 2.4rem 0 5.3rem;
-    }
-
-    @media(min-width: 1024px) {
-        margin: auto;
-
-        .inputs {
-            flex-direction: row;
-            gap: 3.2rem;
-
-            input {
-                font-size: 1.4rem;
-                width: 15.4rem;
-            }
-            
-            input:first-child {
-                width: 47.2rem;
-            }
-
-            select {
-                width: 37rem;
+        input {
+            &::placeholder {
+                color: ${({ theme }) => theme.COLORS.LIGHT_100};
             }
         }
-
-        button:nth-child(5) {
-            width: 17.2rem;
-        }
     }
-`;
-
-export const Link = styled.div`
-    align-items: center;
-    align-self: flex-start;
-    color: ${({ theme }) => theme.COLORS.LIGHT_100};
-    display: flex;
-
-    svg {
-        align-content: center;
-        height: 3.2rem;
-        margin: 0 0.5rem 2.4rem 0;
-        width: 1.2rem;
-    }
-
-    button {
-        font-weight: 300;
-        margin-bottom: 2.4rem;
-    }
-
-    @media(min-width: 1024px) {
-        svg, button {
-            margin-top: 2.4rem;
-        }
-    }
-`;
-
-export const Form = styled.form`
-    display: flex;
-    flex-direction: column;
 
     label {
         color: ${({ theme }) => theme.COLORS.LIGHT_400};
@@ -134,9 +84,105 @@ export const Form = styled.form`
         width: 100%;
     }
 
+    .dish_information {
+        margin-top: 2.4rem;
+
+        h2 {
+            margin-bottom: 1.6rem;
+        }
+    }
+
+    .tags {
+        background-color: ${({ theme }) => theme.COLORS.DARK_800};
+        border-radius: 8px;
+        display: flex;
+        gap: 1.6rem;
+        padding: 0.8rem;
+        margin-bottom: 1.6rem;
+    }
+
+    button:nth-child(1) {
+        background-color: ${({ theme }) => theme.COLORS.TOMATO_400};
+        color: ${({ theme }) => theme.COLORS.LIGHT_100};
+        font-family: 'Poppins', serif;
+        font-size: 1.4rem;
+        margin-bottom: 6.1rem;
+        text-shadow: 1px 2px 3px black;
+    }
+
     @media(min-width: 1024px) {
-        button {
-            align-self: flex-end;
+        margin: auto 12rem;
+
+        header {
+            margin: 4rem 0 2.4rem 0rem;
+
+            svg {
+                height: 3.2rem;
+                width: 3.2rem;
+            }
+
+            button {
+                font-size: 2.4rem;
+                font-weight: bold;
+            }
+        }
+        
+        h1 {
+            color: transparent;
+            font-size: 2.4rem;
+            margin: 0 0 2.4rem 0;
+        }
+
+        h1::before {
+            color: ${({ theme }) => theme.COLORS.LIGHT_300};
+            content: 'Adicionar prato';
+            font-family: 'Roboto', serif;
+            font-size: 2.4rem;
+            font-weight: 500;
+        }
+        
+        .dish_wrapper {
+            display: flex;
+            gap: 3.2rem;
+
+            .dish_image {
+                width: 50%;
+            }
+
+            .dish_name {
+                width: 100%;
+            }
+
+            .dish_category {
+                width: 100%;
+            }
+        }
+
+        .dish_information {
+            display: flex;
+            gap: 3.2rem;
+            margin-top: 0;
+
+            .ingredients {
+                width: 100%;
+            }
+
+            .price {
+                width: 25%;
+
+                input {
+                    height: 6rem;
+                }
+            }
+        }
+
+        .save_button {
+            display: flex;
+            justify-content: flex-end;
+            
+            button {
+                width: 17.2rem;
+            }
         }
     }
 `;
