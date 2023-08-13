@@ -2,7 +2,6 @@ import styled from 'styled-components';
 
 export const Container = styled.div`
     background: ${({ theme }) => theme.COLORS.DARK_100};
-    display: grid;
     height: 100vh;
     width: 100%;
 
@@ -11,4 +10,11 @@ export const Container = styled.div`
     "header"
     "content"
     "footer";
+
+    .carousel_wrapper {
+        background: ${({ theme }) => theme.COLORS.DARK_100};
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
 `;
