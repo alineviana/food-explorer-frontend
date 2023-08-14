@@ -33,7 +33,7 @@ export const Container = styled.div`
     color: ${({ theme }) => theme.COLORS.LIGHT_100};
   }
 
-  .swiper-pagination {
-    fill: ${({ theme }) => theme.COLORS.LIGHT_100};
+  .swiper-pagination-bullet {
+    background-color: transparent;
   }
 `;

@@ -13,13 +13,16 @@ export function Carousel() {
   const data = [
     {id: '1', image: '../../src/assets/ravanello.svg'},
     {id: '2', image: '../../src/assets/gambe.svg'},
+    {id: '3', image: '../../src/assets/gambe.svg'},
+    {id: '4', image: '../../src/assets/gambe.svg'},
+    {id: '5', image: '../../src/assets/gambe.svg'},
   ]
 
   return (
     <Container>
       <h2>Refeições</h2>
         <Swiper
-          slidesPerView={1}
+          slidesPerView={2}
           pagination={{ clickable: true }}
           navigation
           >

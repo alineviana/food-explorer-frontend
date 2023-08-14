@@ -16,10 +16,22 @@ export const Form = styled.form`
     align-items: center;
     display: flex;
     flex-direction: column;
-    margin: auto;
+    margin-top: 7.3rem;
 
     h2 {
         display: none;
+    }
+
+    label {
+        color: ${({ theme }) => theme.COLORS.LIGHT_400};
+        font-family: 'Roboto', serif;
+        font-size: 1.6rem;
+        font-weight: 300;
+        line-height: 4rem;
+    }
+    
+    input {
+        width: 31.6rem;
     }
 
     button {
@@ -44,6 +56,7 @@ export const Form = styled.form`
     @media(min-width: 1024px) {
         background-color: ${({ theme }) => theme.COLORS.DARK_700};
         border-radius: 1.6rem;
+        margin: auto;
         padding: 6.4rem;
 
         h2 {
@@ -57,6 +70,10 @@ export const Form = styled.form`
         input {
             border: 1px solid #FFFFFF;
             border-radius: 5px;
+        }
+
+        input, button {
+            width: 34.8rem;
         }
     }
 `;
