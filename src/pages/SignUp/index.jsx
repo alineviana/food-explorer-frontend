@@ -2,6 +2,7 @@ import { Container, Form, Logo } from "./styles";
 import { BsHexagonFill } from "react-icons/bs";
 import { Input } from "../../components/Input";
 import { Button } from "../../components/Button";
+import { Link } from "react-router-dom";
 
 export function SignUp() {
   return (
@@ -31,7 +32,7 @@ export function SignUp() {
 
         <Button title="Entrar" />
 
-        <a href="#">Já tenho uma conta</a>
+        <Link to="/">Já tenho uma conta</Link>
       </Form>
     </Container>
   );

@@ -1,7 +1,7 @@
 import { Container, Link, Info, Order} from "./style";
 import { PiCaretLeft } from "react-icons/pi";
 import { ButtonText } from "../../components/ButtonText";
-import imgRavanello from '../../assets/ravanello.png';
+import imgRavanello from '../../assets/ravanello.svg';
 import { Tag } from "../Tag";
 import { Counter } from "../Counter";
 import { Button } from "../Button";
