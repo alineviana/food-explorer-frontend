@@ -7,8 +7,28 @@ import 'swiper/css/pagination';
 import 'swiper/css/scrollbar';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Card } from '../Card';
+import { useState, useEffect } from "react";
 
 export function Carousel() {
+
+  const [slidePerview, setSlidePerview] = useState('');
+
+  useEffect(() => {
+    
+    function handleSize() {
+      
+      if(window.innerWidth < 768) {
+        setSlidePerview(1);
+      } else if (window.innerWidth < 1024) {
+        setSlidePerview(3);
+      } else {
+        setSlidePerview(4);
+      }
+    }
+
+    handleSize();
+  
+  }, [])
 
   const data = [
     {id: '1', image: '../../src/assets/ravanello.svg'},
@@ -22,7 +42,7 @@ export function Carousel() {
     <Container>
       <h2>Refeições</h2>
         <Swiper
-          slidesPerView={2}
+          slidesPerView={slidePerview}
           pagination={{ clickable: true }}
           navigation
           >

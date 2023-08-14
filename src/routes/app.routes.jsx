@@ -3,6 +3,7 @@ import { Dishes } from '../pages/Dishes';
 import { DishesAdmin } from '../pages/DishesAdmin';
 import { EditDish } from '../pages/EditDish';
 import { Home } from '../pages/Home';
+import { HomeAdmin } from '../pages/HomeAdmin';
 import { Menu } from '../pages/Menu';
 import { MenuAdmin } from '../pages/MenuAdmin';
 import { NewDish } from '../pages/NewDish';
@@ -11,6 +12,7 @@ export function AppRoutes() {
     return(
         <Routes>
             <Route path='/' element={<Home />} />
+            <Route path='/admin' element={<HomeAdmin />} />
             <Route path='/dishes' element={<Dishes />} />
             <Route path='/dishesadmin' element={<DishesAdmin />} />
             <Route path='/editdish' element={<EditDish />} />

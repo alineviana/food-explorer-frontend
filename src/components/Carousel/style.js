@@ -19,7 +19,7 @@ export const Container = styled.div`
     display: flex;
     justify-content: center;
   }
-
+  
   .slide-item {
     height: 50%;
     object-fit: cover;
@@ -28,11 +28,11 @@ export const Container = styled.div`
   .swiper-button-prev {
     color: ${({ theme }) => theme.COLORS.LIGHT_100};
   }
-
+  
   .swiper-button-next {
     color: ${({ theme }) => theme.COLORS.LIGHT_100};
   }
-
+  
   .swiper-pagination-bullet {
     background-color: transparent;
   }

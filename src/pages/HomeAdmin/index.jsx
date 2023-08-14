@@ -1,13 +1,13 @@
 import { Container } from "./styles";
-import { Header } from "../../components/Header";
+import { HeaderAdmin } from "../../components/HeaderAdmin";
 import { Banner } from "../../components/Banner";
-import { Footer } from "../../components/Footer";
 import { Carousel } from "../../components/Carousel";
+import { Footer } from "../../components/Footer";
 
-export function Home() {
+export function HomeAdmin() {
   return (
     <Container>
-      <Header />
+      <HeaderAdmin />
       <Banner />
       <div className="carousel_wrapper">
         <Carousel />
