@@ -12,24 +12,27 @@ export function Header() {
       <Menu>
         <AiOutlineMenu />
       </Menu>
-      
-        <Logo>
-          <BsHexagonFill />
-          <span>food explorer</span>
-        </Logo>
-        
-        <Search>
-          <Input placeholder="Busque por pratos ou ingredientes" icon={FiSearch} />
-        </Search>
 
-        <Receipt>
-          <PiReceiptBold />
-        </Receipt>
+      <Logo>
+        <BsHexagonFill />
+        <span>food explorer</span>
+      </Logo>
 
-        <Logout>
-          <LuLogOut />
-        </Logout>
+      <Search>
+        <Input
+          placeholder="Busque por pratos ou ingredientes"
+          icon={FiSearch}
+        />
+      </Search>
 
+      <Receipt>
+        <PiReceiptBold />
+        <p>Pedidos (0)</p>
+      </Receipt>
+
+      <Logout>
+        <LuLogOut />
+      </Logout>
     </Container>
   );
 }

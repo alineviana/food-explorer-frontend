@@ -87,10 +87,17 @@ export const Receipt = styled.button`
     @media(min-width: 1024px) {
         background-color: ${({ theme }) => theme.COLORS.TOMATO_100};
         border-radius: 0.5rem;
+        color: ${({ theme }) => theme.COLORS.LIGHT_100};
+        display: flex;
         height: 5.4rem;
+        justify-content: center;
         margin-top: 4rem;
         padding: 1.6rem;
         width: 21.6rem;
+
+        p {
+            margin-left: 0.8rem;
+        }
     }
 `;
 

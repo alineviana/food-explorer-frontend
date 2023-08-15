@@ -27,21 +27,20 @@ export const Container = styled.div`
 
 `;
 
-export const Link = styled.div`
+export const Link = styled.button`
     align-items: center;
     align-self: flex-start;
+    background-color: transparent;
+    border: none;
     color: ${({ theme }) => theme.COLORS.LIGHT_100};
     display: flex;
-
+    
     svg {
         align-content: center;
         height: 3.2rem;
+        margin-left: 5.6rem;
         margin-right: 0.5rem;
         width: 1.2rem;
-    }
-
-    button {
-        font-weight: 300;
     }
 `;
 
@@ -95,16 +94,47 @@ export const Order = styled.div`
     align-items: flex-end;
     margin: 4.8rem 0 5.4rem;
     
-    button:nth-child(2) {
+    .pedir {
         align-items: center;
         background-color: ${({ theme }) => theme.COLORS.TOMATO_100};
+        border: none;
+        border-radius: 4px;
         color: ${({ theme }) => theme.COLORS.LIGHT_100};
         display: flex;
-        font-size: 1.1rem;
+        font-size: 1rem;
         font-family: 'Poppins', sans-serif; 
         font-weight: 400;
-        justify-content: space-evenly;
         height: 3.7rem;
+        justify-content: center;
         width: 18rem;
+
+        svg {
+            margin-right: 1rem;
+        }
+    }
+
+    .incluir {
+        display: none;
+    }
+
+    @media(min-width: 1024px) {
+        .pedir {
+            display: none;
+        }
+
+        .incluir {
+            align-items: center;
+            background-color: ${({ theme }) => theme.COLORS.TOMATO_100};
+            border: none;
+            border-radius: 4px;
+            color: ${({ theme }) => theme.COLORS.LIGHT_100};
+            display: flex;
+            font-size: 1.4rem;
+            font-family: 'Poppins', sans-serif; 
+            font-weight: 400;
+            height: 3.7rem;
+            justify-content: center;
+            width: 18rem;
+        }
     }
 `;

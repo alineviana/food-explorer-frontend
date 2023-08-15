@@ -103,6 +103,7 @@ export const Form = styled.form`
 
     button:nth-child(1) {
         background-color: ${({ theme }) => theme.COLORS.TOMATO_400};
+        border-radius: 5px;
         color: ${({ theme }) => theme.COLORS.LIGHT_100};
         font-family: 'Poppins', serif;
         font-size: 1.4rem;

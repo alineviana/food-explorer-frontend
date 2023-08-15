@@ -27,15 +27,18 @@ export const Container = styled.div`
 
 `;
 
-export const Link = styled.div`
+export const Link = styled.button`
     align-items: center;
     align-self: flex-start;
+    background-color: transparent;
+    border: none;
     color: ${({ theme }) => theme.COLORS.LIGHT_100};
     display: flex;
 
     svg {
         align-content: center;
         height: 3.2rem;
+        margin-left: 5.6rem;
         margin-right: 0.5rem;
         width: 1.2rem;
     }
@@ -96,6 +99,7 @@ export const Order = styled.div`
     button:nth-child(1) {
         align-items: center;
         background-color: ${({ theme }) => theme.COLORS.TOMATO_100};
+        border-radius: 5px;
         color: ${({ theme }) => theme.COLORS.LIGHT_100};
         font-size: 1.4rem;
         font-family: 'Poppins', sans-serif; 

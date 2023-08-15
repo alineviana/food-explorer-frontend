@@ -3,6 +3,7 @@ import { Input } from "../../components/Input";
 import { AiOutlineMenu } from "react-icons/ai";
 import { BsHexagonFill } from "react-icons/bs";
 import { FiSearch } from "react-icons/fi";
+import { Link } from "react-router-dom";
 import { LuLogOut } from "react-icons/lu";
 
 export function HeaderAdmin() {
@@ -24,9 +25,9 @@ export function HeaderAdmin() {
           <Input placeholder="Busque por pratos ou ingredientes" icon={FiSearch} />
         </Search>
 
-        <Receipt>
-          Novo Prato
-        </Receipt>
+        <Link to='/newdish'>
+          <Receipt>Novo Prato</Receipt>
+        </Link>
 
         <Logout>
           <LuLogOut />

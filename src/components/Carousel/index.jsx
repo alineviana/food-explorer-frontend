@@ -6,7 +6,7 @@ import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import 'swiper/css/scrollbar';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { Card } from '../Card';
+import { CardAdmin } from '../CardAdmin';
 import { useState, useEffect } from "react";
 
 export function Carousel() {
@@ -49,7 +49,7 @@ export function Carousel() {
           {
             data.map((item) => (
               <SwiperSlide key={item.id}>
-                <Card />
+                <CardAdmin />
               </SwiperSlide>
             ))
           }
