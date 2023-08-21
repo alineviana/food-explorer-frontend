@@ -48,7 +48,6 @@ export const Form = styled.form`
         font-family: 'Poppins', sans-serif; 
         font-weight: 400;
         height: 4.8rem;
-        text-shadow: 2px 3px 5px black;
         width: 31.6rem;
     }
 

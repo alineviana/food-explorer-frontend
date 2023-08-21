@@ -8,4 +8,5 @@ export const Container = styled.button`
     font-size: 1.8rem;
     font-family: 'Poppins', sans-serif;
     font-weight: 400;
+    text-shadow: 1px 2px 2px rgba(0, 0, 0.8);
 `;

@@ -21,6 +21,7 @@ export const Container = styled.div`
 
         height: 4.8rem;
         padding: 1.6rem;
+        text-shadow: 1px 2px 1px rgba(0, 0, 0.6);
         width: 100%;
 
         &::placeholder {

@@ -1,3 +1,4 @@
+import { useAuth } from "../../hooks/auth";
 import { Container, Menu, Logo, Search, Receipt, Logout } from "./styles";
 import { Input } from "../../components/Input";
 import { AiOutlineMenu } from "react-icons/ai";
@@ -7,6 +8,8 @@ import { PiReceiptBold } from "react-icons/pi";
 import { LuLogOut } from "react-icons/lu";
 
 export function Header() {
+  const { signOut } = useAuth();
+
   return (
     <Container>
       <Menu>
@@ -31,7 +34,9 @@ export function Header() {
       </Receipt>
 
       <Logout>
-        <LuLogOut />
+        <LuLogOut 
+          onClick={signOut}
+        />
       </Logout>
     </Container>
   );

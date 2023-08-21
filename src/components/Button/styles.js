@@ -11,6 +11,7 @@ export const Container = styled.button`
     
     margin-top: 1.6rem;
     padding: 0 1.6rem;
+    text-shadow: 1px 2px 2px rgba(0, 0, 0.8);
     width: 100%;
 
     &:disabled {
