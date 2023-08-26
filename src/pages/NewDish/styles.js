@@ -53,12 +53,6 @@ export const Form = styled.form`
             height: 2.4rem;
             width: 2.4rem;
         }
-
-        input {
-            &::placeholder {
-                color: ${({ theme }) => theme.COLORS.LIGHT_100};
-            }
-        }
     }
 
     label {

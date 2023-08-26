@@ -1,4 +1,5 @@
 import { useAuth } from "../../hooks/auth";
+import { useNavigate } from "react-router-dom";
 import { Container, Menu, Logo, Search, Receipt, Logout } from "./styles";
 import { Input } from "../../components/Input";
 import { AiOutlineMenu } from "react-icons/ai";
@@ -9,6 +10,12 @@ import { LuLogOut } from "react-icons/lu";
 
 export function Header() {
   const { signOut } = useAuth();
+  const navigate = useNavigate();
+
+  function handleSignOut() {
+    navigate("/");
+    signOut();
+  }
 
   return (
     <Container>
@@ -35,7 +42,7 @@ export function Header() {
 
       <Logout>
         <LuLogOut 
-          onClick={signOut}
+          onClick={handleSignOut}
         />
       </Logout>
     </Container>

@@ -17,4 +17,19 @@ export const Container = styled.div`
         flex-direction: column;
         align-items: center;
     }
+ 
+    .title {
+        align-self: flex-start;
+        color: ${({ theme }) => theme.COLORS.LIGHT_100};
+        font-family: 'Poppins', serif;
+        font-size: 1.8rem;
+        margin: 0 0 2.4rem 2.4rem;
+    }
+
+    @media(min-width: 1024px) {
+        .title {
+            font-size: 2.4rem;
+            margin: 0 0 2.4rem 7rem;
+        }
+    }
 `;

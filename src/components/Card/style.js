@@ -25,7 +25,7 @@ export const Container = styled.div`
         width: 8.8rem;
     }
 
-    h1 {
+    h3 {
         align-items: center;
         color: ${({ theme }) => theme.COLORS.LIGHT_300};
         font-family: 'Poppins', serif;

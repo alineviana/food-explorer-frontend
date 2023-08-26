@@ -6,10 +6,10 @@ import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import 'swiper/css/scrollbar';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { CardAdmin } from '../CardAdmin';
+import { Card } from '../Card';
 import { useState, useEffect } from "react";
 
-export function Carousel() {
+export function Carousel({ title, ...rest }) {
 
   const [slidePerview, setSlidePerview] = useState('');
 
@@ -40,7 +40,6 @@ export function Carousel() {
 
   return (
     <Container>
-      <h2>Refeições</h2>
         <Swiper
           slidesPerView={slidePerview}
           pagination={{ clickable: true }}
@@ -49,7 +48,7 @@ export function Carousel() {
           {
             data.map((item) => (
               <SwiperSlide key={item.id}>
-                <CardAdmin />
+                <Card />
               </SwiperSlide>
             ))
           }

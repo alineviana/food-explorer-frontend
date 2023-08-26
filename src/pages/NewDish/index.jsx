@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { api } from '../../services/api';
+import { api } from "../../services/api";
 import { useNavigate } from "react-router-dom";
 import { Container, Form } from "./styles";
 import { HeaderAdmin } from "../../components/HeaderAdmin";
@@ -14,37 +14,84 @@ import { Button } from "../../components/Button";
 import { Footer } from "../../components/Footer";
 
 export function NewDish() {
-  const [name, setName] = useState('');
-  const [category, setCategory] = useState('');
-  
+  const [image, setImage] = useState(null);
+
+  const [name, setName] = useState("");
+  const [category, setCategory] = useState("");
+
   const [ingredients, setIngredients] = useState([]);
-  const [newIngredient, setNewIngredient] = useState('');
-  
-  const [price, setPrice] = useState('');
-  const [description, setDescription] = useState('');
+  const [newIngredient, setNewIngredient] = useState([]);
+
+  const [price, setPrice] = useState("");
+  const [description, setDescription] = useState("");
 
   const navigate = useNavigate();
 
+  function handleBack() {
+    return navigate(-1);
+  }
+
+  function handleImage(e) {
+    const file = e.target.files[0];
+    setImage(file);
+  }
+
   async function handleNewDish() {
-    await api.post("/dishes", {
-      name,
-      category,
-      ingredients,
-      price,
-      description
-    });
+    if (!image) {
+      return alert("Selecione a imagem do prato!");
+    }
+
+    if (!name) {
+      return alert("Digite o nome do prato!");
+    }
+
+    if (!category) {
+      return alert("Selecione a categoria do prato!");
+    }
+
+    if (ingredients.length === 0) {
+      return alert("Informe ao menos um ingrediente para o prato!");
+    }
+
+    if (newIngredient) {
+      return alert(
+        "Você deixou um ingrediente no campo para adicionar, mas não clicou em adicionar. Clique em adicionar ou deixe o campo vazio!"
+      );
+    }
+
+    if (!price) {
+      return alert("Digite o preço do prato!");
+    }
+
+    if (!description) {
+      return alert("Digite a descrição do prato!");
+    }
+   
+		const formData = new FormData();
+
+    formData.append("image", image);
+    formData.append("name", name);
+    formData.append("category", category);
+    formData.append("ingredients", JSON.stringify(ingredients));
+    formData.append("price", price);
+    formData.append("description", description);
+
+    await api.post("/dishes", formData);
 
     alert("O prato foi cadastrado com sucesso!");
-    navigate("/");
-  }  
+
+    navigate(-1);
+	}
 
   function handleAddIngredients() {
-    setIngredients(prevState => [...prevState, newIngredient]);
+    setIngredients((prevState) => [...prevState, newIngredient]);
     setNewIngredient("");
   }
 
   function handleRemoveIngredient(deleted) {
-    setIngredients(prevState => prevState.filter(ingredient => ingredient !== deleted));
+    setIngredients((prevState) =>
+      prevState.filter((ingredient) => ingredient !== deleted)
+    );
   }
 
   return (
@@ -55,7 +102,10 @@ export function NewDish() {
         <Form>
           <header>
             <PiCaretLeft />
-            <ButtonText title="voltar" />
+            <ButtonText 
+              title="voltar"
+              onClick={handleBack}
+            />
           </header>
 
           <h1>Novo Prato</h1>
@@ -64,17 +114,22 @@ export function NewDish() {
             <div className="dish_image">
               <label>
                 Imagem do prato
-                <Input placeholder="Selecione imagem" icon={PiUploadSimple} />
+                <Input
+                  placeholder="Selecione imagem"
+                  icon={PiUploadSimple}
+                  type="file"
+                  onChange={handleImage}
+                />
               </label>
             </div>
 
             <div className="dish_name">
               <label>
                 Nome
-                <Input 
+                <Input
                   type="text"
                   placeholder="Ex.: Salada Ceasar"
-                  onChange={e => setName(e.target.value)}
+                  onChange={(e) => setName(e.target.value)}
                 />
               </label>
             </div>
@@ -83,11 +138,11 @@ export function NewDish() {
               <label>
                 Categoria
                 <select 
-                  onChange={e => setCategory(e.target.value)}
+                  onChange={(e) => setCategory(e.target.value)}
                 >
-                  <option value="refeicoes">Refeições</option>
-                  <option value="sobremesas">Sobremesas</option>
-                  <option value="bebidas">Bebidas</option>
+                  <option value="Refeições">Refeições</option>
+                  <option value="Sobremesas">Sobremesas</option>
+                  <option value="Bebidas">Bebidas</option>
                 </select>
               </label>
             </div>
@@ -110,7 +165,7 @@ export function NewDish() {
                     isNew
                     placeholder="Adicionar"
                     value={newIngredient}
-                    onChange={e => setNewIngredient(e.target.value)}
+                    onChange={(e) => setNewIngredient(e.target.value)}
                     onClick={handleAddIngredients}
                   />
                 </div>
@@ -120,10 +175,10 @@ export function NewDish() {
             <div className="price">
               <label>
                 Preço
-                <Input 
+                <Input
                   type="number"
                   placeholder="R$ 00,00"
-                  onChange={e => setPrice(e.target.value)}
+                  onChange={(e) => setPrice(e.target.value)}
                 />
               </label>
             </div>
@@ -131,15 +186,15 @@ export function NewDish() {
 
           <label>
             Descrição
-            <TextArea 
+            <TextArea
               placeholder="Fale brevemente sobre o prato, seus ingredientes e composição"
-              onChange={e => setDescription(e.target.value)}
+              onChange={(e) => setDescription(e.target.value)}
             />
           </label>
 
           <div className="save_button">
             <Button 
-              title="Salvar alterações"
+              title="Salvar alterações" 
               onClick={handleNewDish}
             />
           </div>
