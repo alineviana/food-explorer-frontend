@@ -1,43 +1,60 @@
-import { Container, Link, Info, Order} from "./style";
+import { useState, useEffect } from "react";
+import { useParams, useNavigate } from "react-router-dom";
+import { api } from "../../services/api";
+import { Container, Link, Info, Order } from "./style";
 import { PiCaretLeft } from "react-icons/pi";
 import { ButtonText } from "../ButtonText";
-import imgRavanello from '../../assets/ravanello.svg';
 import { Tag } from "../Tag";
 import { Button } from "../Button";
 
-export function DishAdmin({ data, ...rest }) {
+export function DishAdmin() {
+  const [data, setData] = useState(null);
+  const params = useParams();
+  const navigate = useNavigate();
+
+  function handleBackHome() {
+    navigate(-1);
+  }
+
+  useEffect(() => {
+    async function fetchDish() {
+      const response = await api.get(`/dishes/${params.id}`);
+      setData(response.data);
+      console.log(response)
+    }
+
+    fetchDish();
+  }, []);
+
   return (
-    <Container {...rest}>
+    <Container>
       <Link>
         <PiCaretLeft />
-        <ButtonText title="voltar" />
+        <ButtonText title="voltar" onClick={handleBackHome} />
       </Link>
 
-      <img src={imgRavanello} alt="Imagem Salada Ravanello" />
-
-      <Info>
-      <h1>{data.title}</h1>
-      <p>{data.text}</p>
-
       {
-        data.tags && (
-          <footer>
-          {
-            data.tags.map((tag) => (
-            <Tag key={tag.name} title={tag.name} />
-           ))
-          }
-          </footer>
-    )}
+        data && 
+        <Info>
+          <img src={`${api.defaults.baseURL}/files/${data.image}`} alt={data.name} />
 
-        <Order>
-          <Button
-            title="Editar prato"
-          />
-        </Order>
+          <h1>{data.name}</h1>
 
-      </Info>
+          <p>{data.description}</p>
 
+          {data.tags && (
+            <footer>
+              {data.tags.map((tag) => (
+                <Tag key={String(tag.id)} title={tag.name} />
+              ))}
+            </footer>
+          )}
+
+          <Order>
+            <Button title="Editar prato" />
+          </Order>
+        </Info>
+      }
     </Container>
   );
 }

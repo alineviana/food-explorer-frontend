@@ -1,49 +1,90 @@
-import { Container, Link, Info, Order} from "./style";
+import { useState, useEffect } from "react";
+import { useParams, useNavigate } from "react-router-dom";
+import { api } from "../../services/api";
+import { Container, Link, Info, Order } from "./style";
 import { PiCaretLeft } from "react-icons/pi";
 import { ButtonText } from "../../components/ButtonText";
-import imgRavanello from '../../assets/ravanello.svg';
 import { Tag } from "../Tag";
-import { Counter } from "../Counter";
+import { Counter } from "../../components/Counter";
 import { PiReceiptBold } from "react-icons/pi";
 
-export function Dish({ data, ...rest }) {
+export function Dish() {
+  const [data, setData] = useState(null);
+  const [ingredients, setIngredients] = useState([]);
+  const params = useParams();
+  const navigate = useNavigate();
+
+  function handleBackHome() {
+    navigate("/");
+  }
+
+  useEffect(() => {
+    async function fetchDishes() {
+      const response = await api.get(`/dishes/${params.id}`);
+      setData(response.data[0]);
+    }
+
+    fetchDishes();
+  }, []);
+
+  useEffect(() => {
+    async function fetchIngredients() {
+      const response = await api.get("/ingredients");
+      setIngredients(response.data);
+    }
+
+    fetchIngredients();
+  }, []);
+
   return (
-    <Container {...rest}>
-      <Link>
-        <PiCaretLeft />
-        <ButtonText title="voltar" />
-      </Link>
-
-      <img src={imgRavanello} alt="Imagem Salada Ravanello" />
-
-      <Info>
-      <h1>{data.title}</h1>
-      <p>{data.text}</p>
-
+    <Container>
       {
-        data.tags && (
-          <footer>
-          {
-            data.tags.map((tag) => (
-            <Tag key={tag.name} title={tag.name} />
-           ))
-          }
-          </footer>
-    )}
+        data && (
+        <main>
+          <Link>
+            <PiCaretLeft />
+            <ButtonText 
+              title="voltar"
+              onClick={handleBackHome}
+            />
+          </Link>
 
-        <Order>
-          <Counter />
-          <button className="pedir">
-            <PiReceiptBold />
-            pedir ∙ R$ 25,00
-          </button>
-          <button className="incluir">
-            incluir ∙ R$ 25,00
-          </button> 
+          <Info>
+            <div className="dish_image">
+              <img
+                src={`${api.defaults.baseURL}/files/${data.image}`}
+                alt={data.name}
+              />
+            </div>
+
+            <div className="dish_description">
+              <h1>{data.name}</h1>
+              <p>{data.description}</p>
+
+              <section className="ingredients">
+                {
+                  ingredients &&
+                  ingredients.map((ingredient) => (
+                    <Tag 
+                      key={String(ingredient.id)}
+                      title={ingredient.name}
+                    />
+                  ))}
+              </section>
+
+          <Order>
+            <Counter />
+            <button className="pedir">
+              <PiReceiptBold />
+              pedir ∙ R$ 25,00
+            </button>
+            <button className="incluir">incluir ∙ R$ 25,00</button>
         </Order>
+        </div>
+        </Info>
 
-      </Info>
-
+        </main>
+      )}
     </Container>
   );
 }
