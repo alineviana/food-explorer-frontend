@@ -29,7 +29,7 @@ export function Dish() {
 
   useEffect(() => {
     async function fetchIngredients() {
-      const response = await api.get("/ingredients");
+      const response = await api.get(`/ingredients/${params.id}`);
       setIngredients(response.data);
     }
 

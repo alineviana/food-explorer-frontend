@@ -62,10 +62,10 @@ export const Info = styled.div`
         }
 
         section {
+            align-self: center;
             display: flex;
             flex-wrap: wrap;
             gap: 1rem;
-            justify-content: space-evenly;
             margin-top: 2.4rem;
             width: 80%;
         }
