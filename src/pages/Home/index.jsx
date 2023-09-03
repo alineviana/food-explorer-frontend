@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import { register } from "swiper/element/bundle";
-register();
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/navigation";
@@ -13,15 +12,21 @@ import { Banner } from "../../components/Banner";
 import { Section } from "../../components/Section";
 import { FoodCard } from "../../components/FoodCard";
 import { Footer } from "../../components/Footer";
+register();
 
 export function Home() {
-  const [dishes, setDishes] = useState([]);
+  const [dishes, setDishes] = useState({ meals: [], desserts: [], drinks: [] });
   const [slidePerview, setSlidePerview] = useState("");
 
   useEffect(() => {
     async function fetchDishes() {
       const response = await api.get(`/dishes`);
-      setDishes(response.data);
+
+      const meals = response.data.filter(dish => dish.category === "Refeições");
+      const desserts = response.data.filter(dish => dish.category === "Sobremesas");
+      const drinks = response.data.filter(dish => dish.category === "Bebidas");
+
+      setDishes({ meals, desserts, drinks });
     }
 
     fetchDishes();
@@ -53,7 +58,7 @@ export function Home() {
             pagination={{ clickable: true }}
             navigation
           >
-            {dishes.map((dish) => (
+            {dishes.meals.map((dish) => (
               <SwiperSlide key={dish.id}>
                 <FoodCard
                   data={dish}
@@ -75,7 +80,7 @@ export function Home() {
             pagination={{ clickable: true }}
             navigation
           >
-            {dishes.map((dish) => (
+            {dishes.desserts.map((dish) => (
               <SwiperSlide key={dish.id}>
                 <FoodCard
                   data={dish}
@@ -97,7 +102,7 @@ export function Home() {
             pagination={{ clickable: true }}
             navigation
           >
-            {dishes.map((dish) => (
+            {dishes.drinks.map((dish) => (
               <SwiperSlide key={dish.id}>
                 <FoodCard
                   data={dish}
