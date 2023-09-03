@@ -27,6 +27,7 @@ export const Container = styled.div`
 
       .swiper-slide {
         display: flex;
+        height: 32rem;
         justify-content: center;
       }
 
@@ -35,8 +36,9 @@ export const Container = styled.div`
         color: ${({ theme }) => theme.COLORS.LIGHT_100};
       }
 
-      .swiper-pagination-bullet {
-        background-color: transparent;
+      .swiper-button-prev:active,
+      .swiper-button-next:active {
+        color: ${({ theme }) => theme.COLORS.CAKE_100};
       }
     }
   }

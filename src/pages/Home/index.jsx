@@ -7,7 +7,7 @@ import "swiper/css/pagination";
 import "swiper/css/scrollbar";
 import { api } from "../../services/api";
 import { Container } from "./styles";
-import { Header } from "../../components/Header";
+import { HeaderAdmin } from "../../components/HeaderAdmin";
 import { Banner } from "../../components/Banner";
 import { Section } from "../../components/Section";
 import { FoodCard } from "../../components/FoodCard";
@@ -48,14 +48,13 @@ export function Home() {
 
   return (
     <Container>
-      <Header />
+      <HeaderAdmin />
       <Banner />
 
       <div className="carousel_wrapper">
         <Section title="Refeições">
           <Swiper
             slidesPerView={slidePerview}
-            pagination={{ clickable: true }}
             navigation
           >
             {dishes.meals.map((dish) => (
@@ -77,7 +76,6 @@ export function Home() {
         <Section title="Sobremesas">
           <Swiper
             slidesPerView={slidePerview}
-            pagination={{ clickable: true }}
             navigation
           >
             {dishes.desserts.map((dish) => (
@@ -99,7 +97,6 @@ export function Home() {
         <Section title="Bebidas">
           <Swiper
             slidesPerView={slidePerview}
-            pagination={{ clickable: true }}
             navigation
           >
             {dishes.drinks.map((dish) => (

@@ -38,15 +38,15 @@ export function NewDish() {
 
   async function handleNewDish() {
     if (!image) {
-      return alert("Selecione a imagem do prato!");
+      return alert("Selecione uma imagem para o prato!");
     }
 
     if (!name) {
-      return alert("Digite o nome do prato!");
+      return alert("Digite um nome para o prato!");
     }
 
     if (!category) {
-      return alert("Selecione a categoria do prato!");
+      return alert("Selecione uma categoria para o prato!");
     }
 
     if (ingredients.length === 0) {
@@ -60,14 +60,14 @@ export function NewDish() {
     }
 
     if (!price) {
-      return alert("Digite o preço do prato!");
+      return alert("Digite um preço para o prato!");
     }
 
     if (!description) {
-      return alert("Digite a descrição do prato!");
+      return alert("Digite uma descrição para o prato!");
     }
-   
-		const formData = new FormData();
+
+    const formData = new FormData();
 
     formData.append("image", image);
     formData.append("name", name);
@@ -81,7 +81,7 @@ export function NewDish() {
     alert("O prato foi cadastrado com sucesso!");
 
     navigate(-1);
-	}
+  }
 
   function handleAddIngredients() {
     setIngredients((prevState) => [...prevState, newIngredient]);
@@ -102,25 +102,27 @@ export function NewDish() {
         <Form>
           <header>
             <PiCaretLeft />
-            <ButtonText 
-              title="voltar"
-              onClick={handleBack}
-            />
+            <ButtonText title="voltar" onClick={handleBack} />
           </header>
 
           <h1>Novo Prato</h1>
 
           <div className="dish_wrapper">
             <div className="dish_image">
-              <label>
-                Imagem do prato
-                <Input
-                  placeholder="Selecione imagem"
-                  icon={PiUploadSimple}
-                  type="file"
-                  onChange={handleImage}
-                />
-              </label>
+              <Section title="Imagem do prato">
+                <label for="uploadImage">
+                  <div className="upload_image">
+                    <PiUploadSimple />
+                    Selecione a imagem
+                  </div>
+                  <Input
+                    name="uploadImage"
+                    id="uploadImage"
+                    type="file"
+                    onChange={handleImage}
+                  />
+                </label>
+              </Section>
             </div>
 
             <div className="dish_name">
@@ -137,9 +139,7 @@ export function NewDish() {
             <div className="dish_category">
               <label>
                 Categoria
-                <select 
-                  onChange={(e) => setCategory(e.target.value)}
-                >
+                <select onChange={(e) => setCategory(e.target.value)}>
                   <option value="Refeições">Refeições</option>
                   <option value="Sobremesas">Sobremesas</option>
                   <option value="Bebidas">Bebidas</option>
@@ -152,15 +152,13 @@ export function NewDish() {
             <div className="ingredients">
               <Section title="Ingredientes">
                 <div className="tags">
-                  {
-                    ingredients.map((ingredient, index) => (
-                      <Ingredients
-                        key={String(index)}
-                        value={ingredient}
-                        onClick={() => handleRemoveIngredient(ingredient)}
-                      />
-                    ))
-                  }
+                  {ingredients.map((ingredient, index) => (
+                    <Ingredients
+                      key={String(index)}
+                      value={ingredient}
+                      onClick={() => handleRemoveIngredient(ingredient)}
+                    />
+                  ))}
                   <Ingredients
                     isNew
                     placeholder="Adicionar"
@@ -187,16 +185,13 @@ export function NewDish() {
           <label>
             Descrição
             <TextArea
-              placeholder="Fale brevemente sobre o prato, seus ingredientes e composição"
+              placeholder="Fale brevemente sobre o prato, seus ingredientes e composição."
               onChange={(e) => setDescription(e.target.value)}
             />
           </label>
 
           <div className="save_button">
-            <Button 
-              title="Salvar alterações" 
-              onClick={handleNewDish}
-            />
+            <Button title="Salvar alterações" onClick={handleNewDish} />
           </div>
         </Form>
       </main>
