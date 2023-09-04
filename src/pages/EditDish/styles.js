@@ -3,6 +3,7 @@ import styled from 'styled-components';
 export const Container = styled.div`
     background: ${({ theme }) => theme.COLORS.DARK_100};
     display: grid;
+    height: 100vh;
     width: 100%;
 
     grid-template-rows: 11.4rem auto 7.7rem;
@@ -51,14 +52,24 @@ export const Form = styled.form`
         svg {
             color: ${({ theme }) => theme.COLORS.LIGHT_100};
             height: 2.4rem;
+            margin: 1rem 1.2rem;
             width: 2.4rem;
         }
 
         input {
-            &::placeholder {
-                color: ${({ theme }) => theme.COLORS.LIGHT_100};
-            }
+            display: none;
         }
+    }
+
+    .upload_image {
+        align-items: center;
+        background-color: ${({ theme }) => theme.COLORS.DARK_900};
+        color: ${({ theme }) => theme.COLORS.LIGHT_100};
+        border-radius: 8px;
+        display: flex;
+        height: 4.7rem;
+        margin-top: 1.8rem;
+        text-shadow: 1px 2px 1px rgba(0, 0, 0.6);
     }
 
     label {
@@ -81,6 +92,7 @@ export const Form = styled.form`
         
         height: 4.8rem;
         padding: 1.3rem;
+        text-shadow: 1px 2px 1px rgba(0, 0, 0.6);
         width: 100%;
     }
 
@@ -99,6 +111,10 @@ export const Form = styled.form`
         gap: 1.6rem;
         padding: 0.8rem;
         margin-bottom: 1.6rem;
+    }
+
+    textarea {
+        text-shadow: 1px 2px 1px rgba(0, 0, 0.6);
     }
 
     .delete_save_buttons {

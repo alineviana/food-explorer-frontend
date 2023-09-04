@@ -19,33 +19,47 @@ export function EditDish() {
         <Form>
           <header>
             <PiCaretLeft />
-            <ButtonText title="voltar" />
+            <ButtonText title="voltar" onClick={handleBack} />
           </header>
 
           <h1>Editar Prato</h1>
 
           <div className="dish_wrapper">
             <div className="dish_image">
-              <label>
-                Imagem do prato
-                <Input placeholder="Selecione imagem para alterá-la" icon={PiUploadSimple} />
-              </label>
+              <Section title="Imagem do prato">
+                <label for="uploadImage">
+                  <div className="upload_image">
+                    <PiUploadSimple />
+                    Selecione imagem para alterá-la
+                  </div>
+                  <Input
+                    name="uploadImage"
+                    id="uploadImage"
+                    type="file"
+                    onChange={handleImage}
+                  />
+                </label>
+              </Section>
             </div>
 
             <div className="dish_name">
               <label>
                 Nome
-                <Input type="text" placeholder="Salada César" />
+                <Input
+                  type="text"
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
+                />
               </label>
             </div>
 
             <div className="dish_category">
               <label>
                 Categoria
-                <select>
-                  <option value="refeicoes">Refeições</option>
-                  <option value="sobremesas">Sobremesas</option>
-                  <option value="bebidas">Bebidas</option>
+                <select onChange={(e) => setCategory(e.target.value)}>
+                  <option value="Refeições">Refeições</option>
+                  <option value="Sobremesas">Sobremesas</option>
+                  <option value="Bebidas">Bebidas</option>
                 </select>
               </label>
             </div>
@@ -55,8 +69,28 @@ export function EditDish() {
             <div className="ingredients">
               <Section title="Ingredientes">
                 <div className="tags">
-                  <Ingredients value="Pão Naan" />
-                  <Ingredients placeholder="Adicionar" isNew />
+                  {ingredients.map((ingredient, index) => (
+                    <Ingredients
+                      key={String(index)}
+                      value={ingredient}
+                      onClick={() => handleRemoveIngredient(ingredient)}
+                    />
+                  ))}
+                  {oldIngredients &&
+                    oldIngredients.map((oldIngredient, index) => (
+                      <Ingredients
+                        value={oldIngredient.name}
+                        key={String(index)}
+                        onClick={() => handleRemoveOldIngredient(oldIngredient)}
+                      />
+                    ))}
+                  <Ingredients
+                    isNew
+                    placeholder="Adicionar"
+                    value={newIngredient}
+                    onChange={(e) => setNewIngredient(e.target.value)}
+                    onClick={handleAddIngredients}
+                  />
                 </div>
               </Section>
             </div>
@@ -64,19 +98,35 @@ export function EditDish() {
             <div className="price">
               <label>
                 Preço
-                <Input type="number" placeholder="R$ 40,00" />
+                <Input
+                  type="number"
+                  value={price}
+                  onChange={(e) => setPrice(e.target.value)}
+                />
               </label>
             </div>
           </div>
 
           <label>
             Descrição
-            <TextArea placeholder="A Salada César é uma opção refrescante para o verão." />
+            <TextArea
+              type="text"
+              value={description}
+              onChange={(e) => setDescription(e.target.value)}
+            />
           </label>
 
           <div className="delete_save_buttons">
-            <Button className="delete_button" title="Excluir prato" />
-            <Button className="save_button" title="Salvar alterações" />
+            <Button 
+              className="delete_button" 
+              title="Excluir prato"
+              onClick={deleteDish}
+            />
+            <Button 
+              className="save_button"
+              title="Salvar alterações"
+              onClick={updateDish}
+            />
           </div>
         </Form>
       </main>

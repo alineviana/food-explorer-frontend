@@ -21,6 +21,10 @@ export const Container = styled.div`
       margin: 0 0 2.4rem 2.4rem;
     }
 
+    h2:hover {
+      color: ${({ theme }) => theme.COLORS.TOMATO_400};
+    }
+
     section {
       background-color: ${({ theme }) => theme.COLORS.DARK_100};
       width: 100%;
@@ -38,7 +42,7 @@ export const Container = styled.div`
 
       .swiper-button-prev:active,
       .swiper-button-next:active {
-        color: ${({ theme }) => theme.COLORS.CAKE_100};
+        color: ${({ theme }) => theme.COLORS.CAKE_200};
       }
     }
   }

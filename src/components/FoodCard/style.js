@@ -109,7 +109,7 @@ export const Container = styled.div`
 
       button {
         font-size: 1rem;
-        padding: 1rem;
+        padding: 0.1rem;
       }
     }
 

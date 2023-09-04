@@ -76,9 +76,9 @@ export function Dish() {
             <Counter />
             <button className="pedir">
               <PiReceiptBold />
-              pedir ∙ R$ 25,00
+              pedir ∙ R$ {data.price}
             </button>
-            <button className="incluir">incluir ∙ R$ 25,00</button>
+            <button className="incluir">incluir ∙ R$ {data.price}</button>
         </Order>
         </div>
         </Info>

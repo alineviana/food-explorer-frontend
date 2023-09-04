@@ -14,6 +14,7 @@ export const Count = styled.button`
 
   svg {
     height: 2.7rem;
+    margin: 0 0.6rem;
     width: 2.7rem;
   }
 `;

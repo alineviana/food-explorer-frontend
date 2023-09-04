@@ -4,23 +4,37 @@ import { ButtonText } from "../ButtonText";
 import { VscChevronRight } from "react-icons/vsc";
 import { VscHeart } from "react-icons/vsc";
 
-export function FoodCard({ image, name, description, price, ...rest }) {
+export function FoodCard({ data, image, name, description, price, detailsDish, ...rest }) {
   return (
     <Container {...rest}>
       <button className="heart">
         <VscHeart />
       </button>
 
-      <img src={image} alt={name} />
+      <img 
+        src={image}
+        alt={name}
+        onClick={() => detailsDish(data.id)}
+      />
 
       <h3>
         {name}
         <VscChevronRight />
       </h3>
 
-      <p className="description">{description}</p>
+      <p  
+        className="description"
+        onClick={() => detailsDish(data.id)}
+      >
+        {description}
+      </p>
 
-      <p className="price">{price}</p>
+      <p
+        className="price"
+        onClick={() => detailsDish(data.id)}
+      >
+        {price}
+      </p>
 
       <div className="buttons">
         <Counter />

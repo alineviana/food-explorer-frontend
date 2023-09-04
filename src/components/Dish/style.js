@@ -128,6 +128,7 @@ export const Order = styled.div`
         font-weight: 400;
         height: 3.7rem;
         justify-content: center;
+        margin-left: 1.5rem;
         width: 15rem;
 
         svg {
@@ -158,6 +159,7 @@ export const Order = styled.div`
             font-weight: 400;
             height: 3.7rem;
             justify-content: center;
+            margin-left: 1.5rem;
             width: 18rem;
         }
     }

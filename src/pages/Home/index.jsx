@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { register } from "swiper/element/bundle";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
@@ -7,7 +8,7 @@ import "swiper/css/pagination";
 import "swiper/css/scrollbar";
 import { api } from "../../services/api";
 import { Container } from "./styles";
-import { HeaderAdmin } from "../../components/HeaderAdmin";
+import { Header } from "../../components/Header";
 import { Banner } from "../../components/Banner";
 import { Section } from "../../components/Section";
 import { FoodCard } from "../../components/FoodCard";
@@ -17,6 +18,12 @@ register();
 export function Home() {
   const [dishes, setDishes] = useState({ meals: [], desserts: [], drinks: [] });
   const [slidePerview, setSlidePerview] = useState("");
+  
+  const navigate = useNavigate();
+
+  function detailsDish(dish_id) {
+    navigate(`/dishes/${dish_id}`);
+  }
 
   useEffect(() => {
     async function fetchDishes() {
@@ -48,7 +55,7 @@ export function Home() {
 
   return (
     <Container>
-      <HeaderAdmin />
+      <Header />
       <Banner />
 
       <div className="carousel_wrapper">
@@ -65,6 +72,7 @@ export function Home() {
                   image={`${api.defaults.baseURL}/files/${dish.image}`}
                   description={dish.description}
                   price={dish.price}
+                  detailsDish={detailsDish}
                 />
               </SwiperSlide>
             ))}
@@ -86,6 +94,7 @@ export function Home() {
                   image={`${api.defaults.baseURL}/files/${dish.image}`}
                   description={dish.description}
                   price={dish.price}
+                  detailsDish={detailsDish}
                 />
               </SwiperSlide>
             ))}
@@ -107,6 +116,7 @@ export function Home() {
                   image={`${api.defaults.baseURL}/files/${dish.image}`}
                   description={dish.description}
                   price={dish.price}
+                  detailsDish={detailsDish}
                 />
               </SwiperSlide>
             ))}
