@@ -108,6 +108,7 @@ export const Form = styled.form`
         background-color: ${({ theme }) => theme.COLORS.DARK_800};
         border-radius: 8px;
         display: flex;
+        flex-wrap: wrap;
         gap: 1.6rem;
         padding: 0.8rem;
         margin-bottom: 1.6rem;
