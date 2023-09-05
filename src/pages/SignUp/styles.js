@@ -19,6 +19,7 @@ export const Container = styled.div`
 
 export const Form = styled.form`
     align-items: center;
+    background-color: ${({ theme }) => theme.COLORS.DARK_100};
     display: flex;
     flex-direction: column;
     margin-top: 7.3rem;
@@ -40,6 +41,12 @@ export const Form = styled.form`
         width: 31.6rem;
     }
 
+    input:focus {
+        border: 1px solid #065E7C;
+        border-radius: 5px;
+        box-shadow: 1px 3px 5px #065E7C;
+    }
+
     button {
         background-color: ${({ theme }) => theme.COLORS.TOMATO_100};
         border-radius: 0.5rem;
@@ -51,12 +58,25 @@ export const Form = styled.form`
         width: 31.6rem;
     }
 
+    button:hover {
+        background-color: ${({ theme }) => theme.COLORS.TOMATO_200};
+        box-shadow: 1px 3px 5px #065E7C;
+        transform: scale(1.1);
+        transition: .3s linear;
+    }
+
     a {
         color: ${({ theme }) => theme.COLORS.LIGHT_100};
         font-family: 'Poppins', sans-serif;
         font-size: 1.4rem;
         font-weight: 400;
-        margin-top: 3.2rem;
+        margin: 3.2rem 0 2rem;
+    }
+
+    a:hover {
+        color: ${({ theme }) => theme.COLORS.CAKE_200};
+        transform: scale(1.1);
+        transition: .3s linear;
     }
 
     @media(min-width: 1024px) {
@@ -75,8 +95,16 @@ export const Form = styled.form`
             text-shadow: 2px 3px 5px black;
         }
 
+        h2:hover {
+            color: ${({ theme }) => theme.COLORS.CAKE_200};
+        }
+
         input, button {
             width: 34.8rem;
+        }
+
+        a {
+            margin: 3.2rem 0 0;
         }
     }
 `;
@@ -84,7 +112,7 @@ export const Form = styled.form`
 export const Logo = styled.div`
     align-self: center;
     display: flex;
-    margin-top: 15rem;
+    margin-top: 10rem;
     
     svg {
         color: ${({ theme }) => theme.COLORS.CAKE_100};
@@ -98,6 +126,11 @@ export const Logo = styled.div`
         font-size: 3.5rem;
         font-family: 'Roboto', sans-serif;
         font-weight: bold;
+    }
+
+    h1:hover {
+        color: ${({ theme }) => theme.COLORS.CAKE_100};
+        transition: all 3s;
     }
 
     @media(min-width: 1024px) {
