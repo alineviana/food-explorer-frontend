@@ -19,6 +19,10 @@ export const Container = styled.div`
         left: -35px;
     }
 
+    .image:hover {
+        transform: scale(1.1);
+    }
+
     .text-banner {
         position: absolute;
         right: 20px;
@@ -30,6 +34,10 @@ export const Container = styled.div`
             text-shadow: 0 3px 3px rgba(0, 0, 0.75);
         }
 
+        h1:hover {
+            color: ${({ theme }) => theme.COLORS.CAKE_200};
+        }
+
         p {
             font-size: 1.2rem;
             font-weight: 200;
@@ -38,7 +46,7 @@ export const Container = styled.div`
             text-shadow: 0 3px 3px rgba(0, 0, 0.75);
             width: 20.2rem;
         }
-    }
+    }   
 
     @media(min-width: 1024px) {
         margin: 16.4rem auto 6.2rem;
