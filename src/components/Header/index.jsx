@@ -8,7 +8,7 @@ import { FiSearch } from "react-icons/fi";
 import { PiReceiptBold } from "react-icons/pi";
 import { LuLogOut } from "react-icons/lu";
 
-export function Header() {
+export function Header({ setSearch }) {
   const { signOut } = useAuth();
   const navigate = useNavigate();
 
@@ -30,8 +30,11 @@ export function Header() {
 
       <Search>
         <Input
+          type="search"
           placeholder="Busque por pratos ou ingredientes"
           icon={FiSearch}
+          setSearch={setSearch}
+          onChange={(e) => setSearch(e.target.value)}
         />
       </Search>
 
@@ -41,9 +44,7 @@ export function Header() {
       </Receipt>
 
       <Logout>
-        <LuLogOut 
-          onClick={handleSignOut}
-        />
+        <LuLogOut onClick={handleSignOut} />
       </Logout>
     </Container>
   );

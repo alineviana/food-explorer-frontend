@@ -27,17 +27,34 @@ export const Container = styled.div`
 
     section {
       background-color: ${({ theme }) => theme.COLORS.DARK_100};
-      width: 100%;
 
       .swiper-slide {
         display: flex;
-        height: 32rem;
         justify-content: center;
+        margin: 0 1.6rem;
+      }
+
+      .swiper-slide:nth-child(1) {
+        margin-left: 2.4rem;
+      }
+
+      .swiper-slide:hover {
+        background: linear-gradient(
+          135deg,
+          rgba(255, 255, 255, 0.1),
+          rgba(255, 255, 255, 0.1)
+        );
+        backdrop-filter: blur(21px);
+        -webkit-backdrop-filter: blur(21px);
+        box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.36);
+        border: 1px solid rgba(255, 255, 255, 0.16);
+        border-radius: 2.4rem;
       }
 
       .swiper-button-prev,
       .swiper-button-next {
         color: ${({ theme }) => theme.COLORS.LIGHT_100};
+        display: none;
       }
 
       .swiper-button-prev:active,
@@ -49,13 +66,23 @@ export const Container = styled.div`
 
   @media (min-width: 1024px) {
     .carousel_wrapper {
-      margin-left: 2.4rem;
-      width: 95%;
-      
+      margin-left: 5rem;
+      width: 90%;
+
       h2 {
         font-size: 2.6rem;
         font-weight: 500;
         margin: 0 0 2.4rem 7rem;
+      }
+
+      section {
+        .swiper-slide {
+          margin: 0;
+        }
+
+        .swiper-slide:nth-child(1) {
+          margin-left: 0;
+        }
       }
     }
   }

@@ -47,6 +47,10 @@ export const Logo = styled.div`
         margin-left: 0.8rem;
     }
 
+    span:hover {
+       color: ${({ theme }) => theme.COLORS.CAKE_100};
+    }
+
     @media(min-width: 1024px) {
         svg {
             height: 3rem;
@@ -83,6 +87,10 @@ export const Receipt = styled.button`
         height: 2.2rem;
         width: 2.6rem;
     }
+    
+    p {
+        display: none;
+    }
 
     @media(min-width: 1024px) {
         background-color: ${({ theme }) => theme.COLORS.TOMATO_100};
@@ -91,11 +99,12 @@ export const Receipt = styled.button`
         display: flex;
         height: 5.4rem;
         justify-content: center;
-        margin-top: 4rem;
+        margin: 4rem 2rem;
         padding: 1.6rem;
         width: 21.6rem;
 
         p {
+            display: flex;
             margin-left: 0.8rem;
         }
     }

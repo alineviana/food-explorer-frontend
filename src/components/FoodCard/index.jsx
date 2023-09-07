@@ -2,13 +2,13 @@ import { Container } from "./style";
 import { Counter } from "../Counter";
 import { ButtonText } from "../ButtonText";
 import { VscChevronRight } from "react-icons/vsc";
-import { VscHeart } from "react-icons/vsc";
+import { SlHeart } from "react-icons/sl";
 
 export function FoodCard({ data, image, name, description, price, detailsDish, ...rest }) {
   return (
     <Container {...rest}>
       <button className="heart">
-        <VscHeart />
+        <SlHeart />
       </button>
 
       <img 

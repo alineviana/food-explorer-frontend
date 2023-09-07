@@ -17,9 +17,9 @@ register();
 
 export function Home() {
   const [dishes, setDishes] = useState({ meals: [], desserts: [], drinks: [] });
-  const [slidePerview, setSlidePerview] = useState("");
-  
+  const [search, setSearch] = useState("");
   const navigate = useNavigate();
+  const [slidePerview, setSlidePerview] = useState("");
 
   function detailsDish(dish_id) {
     navigate(`/dishes/${dish_id}`);
@@ -27,7 +27,7 @@ export function Home() {
 
   useEffect(() => {
     async function fetchDishes() {
-      const response = await api.get(`/dishes`);
+      const response = await api.get(`/dishes?search=${search}`);
 
       const meals = response.data.filter(dish => dish.category === "Refeições");
       const desserts = response.data.filter(dish => dish.category === "Sobremesas");
@@ -37,12 +37,12 @@ export function Home() {
     }
 
     fetchDishes();
-  }, [setDishes]);
+  }, [search, setDishes]);
 
   useEffect(() => {
     function handleSize() {
       if (window.innerWidth < 768) {
-        setSlidePerview(1);
+        setSlidePerview(2);
       } else if (window.innerWidth < 1024) {
         setSlidePerview(3);
       } else {
@@ -55,7 +55,7 @@ export function Home() {
 
   return (
     <Container>
-      <Header />
+      <Header setSearch={setSearch} />
       <Banner />
 
       <div className="carousel_wrapper">

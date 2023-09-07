@@ -66,11 +66,21 @@ export const Container = styled.div`
     font-size: 1.5rem;
   }
 
+  .buttons {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    
+    span {
+      font-size: 1.6rem;
+    }
+  }
+
   button:nth-child(2) {
     background-color: ${({ theme }) => theme.COLORS.TOMATO_100};
     border-radius: 5px;
     height: 3.2rem;
-    margin-bottom: 1rem;
+    margin: 1rem;
     width: 16.2rem;
   }
 
@@ -99,6 +109,7 @@ export const Container = styled.div`
 
     .buttons {
       display: flex;
+      flex-direction: row;
       justify-content: center;
       width: 100%;
       padding: 0 2.5rem 0 2.5rem;
