@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
-    background-color: ${({ theme }) => theme.COLORS.DARK_900};
+    background: linear-gradient(180deg, #091E26 0%, #00131C 100%);
     border-radius: 3px;
     display: flex;
     color: ${({ theme }) => theme.COLORS.LIGHT_100};

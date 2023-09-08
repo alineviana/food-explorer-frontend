@@ -4,19 +4,23 @@ import { FiMinus } from "react-icons/fi";
 import { FiPlus } from "react-icons/fi";
 
 export function Counter() {
-  const [count, setCount] = useState(0);
+  const [count, setCount] = useState(1);
 
   return (
     <Container>
       <Count>
-        <button
+        <button 
           onClick={() => setCount(count > 0 ? count - 1 : 0)}
         >
           <FiMinus />
         </button>
       </Count>
 
-      <span>{count}</span>
+      <span>
+        {
+          String(count).padStart(2, "0")
+        }
+      </span>
 
       <Count>
         <button 

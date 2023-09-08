@@ -11,4 +11,5 @@ export const Container = styled.span`
     margin-right: 0.6rem;
     padding: 0.5rem 1rem;
     text-shadow: 1px 2px 3px black;
+    transform: scale(1.1);
 `;

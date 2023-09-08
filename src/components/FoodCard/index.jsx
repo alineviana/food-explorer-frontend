@@ -4,36 +4,39 @@ import { ButtonText } from "../ButtonText";
 import { VscChevronRight } from "react-icons/vsc";
 import { SlHeart } from "react-icons/sl";
 
-export function FoodCard({ data, image, name, description, price, detailsDish, ...rest }) {
+export function FoodCard({
+  data,
+  image,
+  name,
+  description,
+  price,
+  detailsDish,
+  ...rest
+}) {
   return (
     <Container {...rest}>
       <button className="heart">
         <SlHeart />
       </button>
 
-      <img 
-        src={image}
-        alt={name}
-        onClick={() => detailsDish(data.id)}
-      />
+      <img src={image} alt={name} onClick={() => detailsDish(data.id)} />
 
       <h3>
         {name}
         <VscChevronRight />
       </h3>
 
-      <p  
-        className="description"
-        onClick={() => detailsDish(data.id)}
-      >
+      <p className="description" onClick={() => detailsDish(data.id)}>
         {description}
       </p>
 
-      <p
-        className="price"
-        onClick={() => detailsDish(data.id)}
-      >
-        {price}
+      <p className="price" onClick={() => detailsDish(data.id)}>
+        {
+          Number(price).toLocaleString("pt-br", {
+          style: "currency",
+          currency: "BRL",
+        })
+        }
       </p>
 
       <div className="buttons">

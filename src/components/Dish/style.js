@@ -104,7 +104,7 @@ export const Info = styled.div`
 
             section {
                 align-self: start;
-                width: 50%;
+                gap: 1.3rem;
             }
         }
     }

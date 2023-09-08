@@ -29,9 +29,15 @@ export function Home() {
     async function fetchDishes() {
       const response = await api.get(`/dishes?search=${search}`);
 
-      const meals = response.data.filter(dish => dish.category === "Refeições");
-      const desserts = response.data.filter(dish => dish.category === "Sobremesas");
-      const drinks = response.data.filter(dish => dish.category === "Bebidas");
+      const meals = response.data.filter(
+        (dish) => dish.category === "Refeições"
+      );
+      const desserts = response.data.filter(
+        (dish) => dish.category === "Sobremesas"
+      );
+      const drinks = response.data.filter(
+        (dish) => dish.category === "Bebidas"
+      );
 
       setDishes({ meals, desserts, drinks });
     }
@@ -58,12 +64,10 @@ export function Home() {
       <Header setSearch={setSearch} />
       <Banner />
 
+      <main>
       <div className="carousel_wrapper">
         <Section title="Refeições">
-          <Swiper
-            slidesPerView={slidePerview}
-            navigation
-          >
+          <Swiper slidesPerView={slidePerview} navigation>
             {dishes.meals.map((dish) => (
               <SwiperSlide key={dish.id}>
                 <FoodCard
@@ -82,10 +86,7 @@ export function Home() {
 
       <div className="carousel_wrapper">
         <Section title="Sobremesas">
-          <Swiper
-            slidesPerView={slidePerview}
-            navigation
-          >
+          <Swiper slidesPerView={slidePerview} navigation>
             {dishes.desserts.map((dish) => (
               <SwiperSlide key={dish.id}>
                 <FoodCard
@@ -104,10 +105,7 @@ export function Home() {
 
       <div className="carousel_wrapper">
         <Section title="Bebidas">
-          <Swiper
-            slidesPerView={slidePerview}
-            navigation
-          >
+          <Swiper slidesPerView={slidePerview} navigation>
             {dishes.drinks.map((dish) => (
               <SwiperSlide key={dish.id}>
                 <FoodCard
@@ -123,6 +121,7 @@ export function Home() {
           </Swiper>
         </Section>
       </div>
+      </main>
 
       <Footer />
     </Container>
