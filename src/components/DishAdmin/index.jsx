@@ -1,60 +1,78 @@
 import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { api } from "../../services/api";
-import { Container, Link, Info, Order } from "./style";
+import { Container, Link, Info, Edition } from "./style";
 import { PiCaretLeft } from "react-icons/pi";
-import { ButtonText } from "../ButtonText";
+import { ButtonText } from "../../components/ButtonText";
 import { Tag } from "../Tag";
-import { Button } from "../Button";
 
 export function DishAdmin() {
   const [data, setData] = useState(null);
+  const [ingredients, setIngredients] = useState([]);
   const params = useParams();
   const navigate = useNavigate();
 
   function handleBackHome() {
-    navigate(-1);
+    navigate("/admin");
+  }
+
+  function editDish() {
+    navigate(`/editdish/${params.id}`);
   }
 
   useEffect(() => {
-    async function fetchDish() {
+    async function fetchDishes() {
       const response = await api.get(`/dishes/${params.id}`);
-      setData(response.data);
-      console.log(response)
+      setData(response.data[0]);
     }
 
-    fetchDish();
+    fetchDishes();
+  }, []);
+
+  useEffect(() => {
+    async function fetchIngredients() {
+      const response = await api.get(`/ingredients/${params.id}`);
+      setIngredients(response.data);
+    }
+
+    fetchIngredients();
   }, []);
 
   return (
     <Container>
-      <Link>
-        <PiCaretLeft />
-        <ButtonText title="voltar" onClick={handleBackHome} />
-      </Link>
+      {data && (
+        <main>
+          <Link onClick={handleBackHome}>
+            <PiCaretLeft />
+            <ButtonText title="voltar" />
+          </Link>
 
-      {
-        data && 
-        <Info>
-          <img src={`${api.defaults.baseURL}/files/${data.image}`} alt={data.name} />
+          <Info>
+            <div className="dish_image">
+              <img
+                src={`${api.defaults.baseURL}/files/${data.image}`}
+                alt={data.name}
+              />
+            </div>
 
-          <h1>{data.name}</h1>
+            <div className="dish_description">
+              <h1>{data.name}</h1>
+              <p>{data.description}</p>
 
-          <p>{data.description}</p>
+              <section className="ingredients">
+                {ingredients &&
+                  ingredients.map((ingredient) => (
+                    <Tag key={String(ingredient.id)} title={ingredient.name} />
+                  ))}
+              </section>
 
-          {data.tags && (
-            <footer>
-              {data.tags.map((tag) => (
-                <Tag key={String(tag.id)} title={tag.name} />
-              ))}
-            </footer>
-          )}
-
-          <Order>
-            <Button title="Editar prato" />
-          </Order>
-        </Info>
-      }
+              <Edition>
+                <button onClick={editDish} className="edit">Editar prato</button>
+              </Edition>
+            </div>
+          </Info>
+        </main>
+      )}
     </Container>
   );
 }

@@ -66,8 +66,6 @@ export const Container = styled.div`
 
   @media (min-width: 1024px) {
     main {
-      -webkit-backdrop-filter: blur(10px);
-      backdrop-filter: blur(10px);
       margin: auto;
       width: 90%;
     }
@@ -76,22 +74,21 @@ export const Container = styled.div`
       h2 {
         font-size: 2.6rem;
         font-weight: 500;
-        margin: 0 0 2.4rem 7rem;
+        margin: 0 0 2.4rem 3rem;
       }
 
       section {
-        .swiper-slide {
-          margin: 0 -20px;
+        .swiper-wrapper {
+          height: 30rem;
         }
 
-        .swiper-slide:nth-child(1) {
-          margin-left: 2rem;
+        .swiper-slide {
+          margin: 0 -20px;
         }
 
         .swiper-button-prev,
         .swiper-button-next {
           display: flex;
-          margin: 0 2rem 0 1rem;
         }
       }
     }

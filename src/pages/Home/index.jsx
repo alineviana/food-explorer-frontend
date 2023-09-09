@@ -49,7 +49,7 @@ export function Home() {
     function handleSize() {
       if (window.innerWidth < 768) {
         setSlidePerview(2);
-      } else if (window.innerWidth < 1024) {
+      } else if (window.innerWidth <= 1024) {
         setSlidePerview(3);
       } else {
         setSlidePerview(4);

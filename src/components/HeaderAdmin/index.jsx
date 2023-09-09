@@ -7,7 +7,7 @@ import { FiSearch } from "react-icons/fi";
 import { Link, useNavigate } from "react-router-dom";
 import { LuLogOut } from "react-icons/lu";
 
-export function HeaderAdmin() {
+export function HeaderAdmin({ setSearch }) {
   const { signOut } = useAuth();
   const navigate = useNavigate();
 
@@ -31,7 +31,12 @@ export function HeaderAdmin() {
         </Logo>
         
         <Search>
-          <Input placeholder="Busque por pratos ou ingredientes" icon={FiSearch} />
+          <Input 
+            type="search"
+            placeholder="Busque por pratos ou ingredientes" 
+            icon={FiSearch} 
+            setSearch={setSearch}
+            onChange={(e) => setSearch(e.target.value)}/>
         </Search>
 
         <Link to='/newdish'>

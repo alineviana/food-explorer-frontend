@@ -38,15 +38,11 @@ export function Dish() {
 
   return (
     <Container>
-      {
-        data && (
+      {data && (
         <main>
           <Link>
             <PiCaretLeft />
-            <ButtonText 
-              title="voltar"
-              onClick={handleBackHome}
-            />
+            <ButtonText title="voltar" onClick={handleBackHome} />
           </Link>
 
           <Info>
@@ -62,27 +58,28 @@ export function Dish() {
               <p>{data.description}</p>
 
               <section className="ingredients">
-                {
-                  ingredients &&
+                {ingredients &&
                   ingredients.map((ingredient) => (
-                    <Tag 
-                      key={String(ingredient.id)}
-                      title={ingredient.name}
-                    />
+                    <Tag key={String(ingredient.id)} title={ingredient.name} />
                   ))}
               </section>
 
-          <Order>
-            <Counter />
-            <button className="pedir">
-              <PiReceiptBold />
-              pedir ∙ R$ {data.price}
-            </button>
-            <button className="incluir">incluir ∙ R$ {data.price}</button>
-        </Order>
-        </div>
-        </Info>
-
+              <Order>
+                <Counter />
+                <button className="pedir">
+                  <PiReceiptBold />
+                  pedir ∙ R$ {data.price}
+                </button>
+                <button className="incluir">
+                  incluir ∙ {" "}
+                  {Number(data.price).toLocaleString("pt-br", {
+                    style: "currency",
+                    currency: "BRL",
+                  })}
+                </button>
+              </Order>
+            </div>
+          </Info>
         </main>
       )}
     </Container>

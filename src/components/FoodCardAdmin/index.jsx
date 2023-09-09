@@ -1,14 +1,12 @@
 import { Container } from "./style";
-import { Counter } from "../Counter";
-import { ButtonText } from "../ButtonText";
 import { VscChevronRight } from "react-icons/vsc";
-import { SlHeart } from "react-icons/sl";
+import { PiPencilSimpleLight } from "react-icons/pi";
 
-export function FoodCard({ data, image, name, description, price, detailsDish, ...rest }) {
+export function FoodCardAdmin({ data, image, name, description, price, detailsDish, ...rest }) {
   return (
     <Container {...rest}>
-      <button className="heart">
-        <SlHeart />
+      <button className="pencil" onClick={() => detailsDish(data.id)}>
+        <PiPencilSimpleLight />
       </button>
 
       <img src={image} alt={name} onClick={() => detailsDish(data.id)} />
@@ -28,11 +26,6 @@ export function FoodCard({ data, image, name, description, price, detailsDish, .
           currency: "BRL",
         })}
       </p>
-
-      <div className="buttons">
-        <Counter />
-        <ButtonText title="incluir" />
-      </div>
     </Container>
   );
 }

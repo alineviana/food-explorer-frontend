@@ -14,7 +14,7 @@ export function AppRoutes() {
             <Route path='/' element={<Home />} />
             <Route path='/admin' element={<HomeAdmin />} />
             <Route path='/dishes/:id' element={<Dishes />} />
-            <Route path='/dishesadmin' element={<DishesAdmin />} />
+            <Route path='/dishesadmin/:id' element={<DishesAdmin />} />
             <Route path='/editdish/:id' element={<EditDish />} />
             <Route path='/menu' element={<Menu />} />
             <Route path='/menuadmin' element={<MenuAdmin />} />

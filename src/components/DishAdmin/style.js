@@ -1,116 +1,156 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const Container = styled.div`
-    background-color: ${({ theme }) => theme.COLORS.DARK_100};    
-    margin-top: 3.6rem;
-    width: 100%;
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-
-    img {
-        height: 26.4rem;
-        margin-top: 1.6rem;
-        width: 26.4rem;
-    }
-    
-    @media (min-width: 1024px) {
-        flex-direction: row;
-        margin-bottom: 5rem;
-
-        img {
-            height: 38rem;
-            margin-top: 3.2rem;
-            width: 39rem;
-        }
-    }
-
+  background-color: ${({ theme }) => theme.COLORS.DARK_100};
+  display: flex;
+  flex-direction: column;
+  margin-top: 3.6rem;
+  width: 100%;
 `;
 
 export const Link = styled.button`
-    align-items: center;
-    align-self: flex-start;
-    background-color: transparent;
-    border: none;
-    color: ${({ theme }) => theme.COLORS.LIGHT_100};
-    display: flex;
+  align-items: center;
+  background-color: transparent;
+  border: none;
+  color: ${({ theme }) => theme.COLORS.LIGHT_100};
+  display: flex;
 
+  svg {
+    align-content: center;
+    height: 3.2rem;
+    margin-left: 5.6rem;
+    margin-right: 0.5rem;
+    width: 1.2rem;
+  }
+
+  svg:hover, :hover {
+    color: ${({ theme }) => theme.COLORS.TOMATO_400};
+  }
+
+  @media(min-width: 1024px) {
     svg {
-        align-content: center;
-        height: 3.2rem;
-        margin-left: 5.6rem;
-        margin-right: 0.5rem;
-        width: 1.2rem;
+      height: 3.2rem;
+      width: 3.2rem;
     }
 
     button {
-        font-weight: 300;
+      font-size: 2.4rem;
+      font-weight: bold;
     }
+  }
 `;
 
 export const Info = styled.div`
+  align-items: center;
+  color: ${({ theme }) => theme.COLORS.LIGHT_100};
+  display: flex;
+  flex-direction: column;
+  font-family: "Poppins", serif;
+
+  .dish_image {
+    display: flex;
+    justify-content: center;
+    margin-top: 1rem;
+
+    img {
+      height: 26.4rem;
+      width: 26.4rem;
+    }
+  }
+
+  .dish_description {
     align-items: center;
     display: flex;
     flex-direction: column;
 
     h1 {
-        color: ${({ theme }) => theme.COLORS.LIGHT_100};
-        font-size: 2.7rem;
-        font-weight: 700;
-        margin-top: 1.6rem;
-        text-align: left;
+      font-size: 2.7rem;
+      font-weight: 500;
+      margin-top: 1.6rem;
     }
 
     p {
-        font-size: 1.6rem;
-        margin-top: 2.4rem;
-        text-align: center;
-        width: 26.4rem;
+      font-size: 1.6rem;
+      font-weight: 300;
+      margin-top: 2.4rem;
+      text-align: center;
+      width: 26.4rem;
     }
 
-    footer {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 1rem;
-        justify-content: space-evenly;
-        margin-top: 2.4rem;
-        width: 80%;
+    section {
+      align-self: center;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-top: 2.4rem;
+      width: 80%;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    display: flex;
+    flex-direction: row;
+    gap: 6rem;
+
+    .dish_image {
+      img {
+        height: 34rem;
+        margin: 0 0 3rem 10rem;
+        width: 35rem;
+      }
     }
 
-    @media (min-width: 1024px) {
-        display: inline-block;
-        margin-left: 4.8rem;
+    .dish_description {
+      align-self: flex-start;
+      display: flex;
+      flex-direction: column;
+      margin-top: 2rem;
 
-        h1 {
-            margin-top: 7rem;
-        }
+      h1 {
+        align-self: flex-start;
+        font-size: 4rem;
+      }
 
-        p {
-            font-size: 2.4rem;
-            text-align: justify;
-            width: 68.7rem;
-        }
+      p {
+        align-self: flex-start;
+        font-size: 2.4rem;
+        text-align: left;
+        width: 68.7rem;
+      }
+
+      section {
+        align-self: start;
+        gap: 1.3rem;
+      }
     }
+  }
 `;
 
-export const Order = styled.div`
-    margin: 4.8rem 0 5.4rem;
-    
-    button:nth-child(1) {
-        align-items: center;
-        background-color: ${({ theme }) => theme.COLORS.TOMATO_100};
-        border-radius: 5px;
-        color: ${({ theme }) => theme.COLORS.LIGHT_100};
-        font-size: 1.4rem;
-        font-family: 'Poppins', sans-serif; 
-        font-weight: 400;
-        height: 4.8rem;
-        width: 31.6rem;
-    }
+export const Edition = styled.div`
+  color: ${({ theme }) => theme.COLORS.LIGHT_100};
+  font-family: "Roboto", sans-serif;
+  margin: 4.8rem 0 5.4rem;
+  width: 100%;
 
-    @media(min-width: 1024px) {
-        button:nth-child(1) {
-            width: 13.1rem;
-        }
+  .edit {
+    background-color: ${({ theme }) => theme.COLORS.TOMATO_100};
+    border: none;
+    border-radius: 5px;
+    color: ${({ theme }) => theme.COLORS.LIGHT_100};
+    font-family: "Poppins", sans-serif;
+    font-size: 1.4rem;
+    font-weight: 400;
+    height: 3.7rem;
+    width: 100%;
+  }
+
+  @media (min-width: 1024px) {
+    .edit {
+      align-items: center;
+      font-weight: 400;
+      height: 4.8rem;
+      justify-content: center;
+      width: 13.1rem;
     }
+  }
 `;

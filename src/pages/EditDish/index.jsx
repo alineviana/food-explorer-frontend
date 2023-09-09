@@ -29,7 +29,7 @@ export function EditDish() {
   const navigate = useNavigate();
   
   function handleBack() {
-    return navigate("/");
+    return navigate("/admin");
   }
   
   function handleImage(e) {
@@ -116,7 +116,8 @@ export function EditDish() {
         <Form>
           <header>
             <PiCaretLeft />
-            <ButtonText 
+            <ButtonText
+              className="voltar"
               title="voltar" 
               onClick={handleBack}
             />
