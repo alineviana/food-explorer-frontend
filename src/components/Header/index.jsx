@@ -12,6 +12,10 @@ export function Header({ setSearch }) {
   const { signOut } = useAuth();
   const navigate = useNavigate();
 
+  function handleOrder() {
+    navigate("/order");
+  }
+
   function handleSignOut() {
     navigate("/");
     signOut();
@@ -38,7 +42,7 @@ export function Header({ setSearch }) {
         />
       </Search>
 
-      <Receipt>
+      <Receipt onClick={handleOrder}>
         <PiReceiptBold />
         <p>Pedidos (0)</p>
       </Receipt>

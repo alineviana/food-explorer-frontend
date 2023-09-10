@@ -7,6 +7,7 @@ import { HomeAdmin } from '../pages/HomeAdmin';
 import { Menu } from '../pages/Menu';
 import { MenuAdmin } from '../pages/MenuAdmin';
 import { NewDish } from '../pages/NewDish';
+import { Order } from '../pages/Order';
 
 export function AppRoutes() {
     return(
@@ -19,6 +20,7 @@ export function AppRoutes() {
             <Route path='/menu' element={<Menu />} />
             <Route path='/menuadmin' element={<MenuAdmin />} />
             <Route path='/newdish' element={<NewDish />} />
+            <Route path='/order' element={<Order />} />
         </Routes>
     )
 }
