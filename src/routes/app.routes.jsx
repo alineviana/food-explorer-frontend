@@ -9,6 +9,7 @@ import { MenuAdmin } from '../pages/MenuAdmin';
 import { NewDish } from '../pages/NewDish';
 import { Order } from '../pages/Order';
 import { Favorites } from '../pages/Favorites';
+import { OrderHistory } from '../pages/OrderHistory';
 
 export function AppRoutes() {
     return(
@@ -23,6 +24,7 @@ export function AppRoutes() {
             <Route path='/newdish' element={<NewDish />} />
             <Route path='/order' element={<Order />} />
             <Route path='/favorites' element={<Favorites />} />
+            <Route path='/orderhistory' element={<OrderHistory />} />
         </Routes>
     )
 }
