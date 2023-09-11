@@ -11,6 +11,7 @@ export const Container = styled.div`
     "footer";
 
   .carousel_wrapper {
+    cursor: pointer;
     margin: 0 0 5rem 0;
 
     h2 {

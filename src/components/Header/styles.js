@@ -94,6 +94,12 @@ export const Favorites = styled.button`
   @media (min-width: 1024px) {
     display: flex;
     margin-top: 1.5rem;
+
+    &:hover {
+      color: ${({ theme }) => theme.COLORS.CAKE_200};
+      transform: scale(1.1);
+      transition: .3s linear;
+    }
   }
 `;
 
@@ -108,6 +114,12 @@ export const Order = styled.button`
   @media (min-width: 1024px) {
     display: flex;
     margin-top: 1.5rem;
+
+    &:hover {
+      color: ${({ theme }) => theme.COLORS.CAKE_200};
+      transform: scale(1.1);
+      transition: .3s linear;
+    }
   }
 `;
 
@@ -143,6 +155,11 @@ export const Receipt = styled.button`
       display: flex;
       margin-left: 0.8rem;
     }
+
+    &:hover {
+      transform: scale(1.1);
+      transition: .3s linear;
+    }
   }
 `;
 
@@ -157,5 +174,11 @@ export const Logout = styled.button`
     height: 3.2rem;
     margin-top: 2.5rem;
     width: 3.2rem;
+
+    &:hover {
+      color: ${({ theme }) => theme.COLORS.TOMATO_400};
+      transform: scale(1.3);
+      transition: .3s linear;
+    }
   }
 `;

@@ -57,6 +57,10 @@ export const Container = styled.div`
       td:nth-child(1) {
         border-left: none;
       }
+
+      td:hover {
+        color: ${({ theme }) => theme.COLORS.TOMATO_400};
+      }
     }
   }  
 `;

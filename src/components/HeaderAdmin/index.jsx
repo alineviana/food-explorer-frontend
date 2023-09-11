@@ -75,8 +75,8 @@ export function HeaderAdmin({ setSearch }) {
         <p>Pedidos (0)</p>
       </Receipt>
 
-      <Logout>
-        <LuLogOut onClick={handleSignOut} />
+      <Logout onClick={handleSignOut}>
+        <LuLogOut  />
       </Logout>
     </Container>
   );

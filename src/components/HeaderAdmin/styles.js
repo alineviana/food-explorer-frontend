@@ -14,8 +14,10 @@ export const Container = styled.header`
   }
 `;
 
-export const Menu = styled.div`
+export const Menu = styled.button`
   align-self: center;
+  background-color: transparent;
+  border: none;
 
   svg {
     color: ${({ theme }) => theme.COLORS.LIGHT_100};
@@ -32,6 +34,7 @@ export const Menu = styled.div`
 export const Logo = styled.div`
   color: ${({ theme }) => theme.COLORS.LIGHT_100};
   display: flex;
+  cursor: pointer;
 
   svg {
     color: ${({ theme }) => theme.COLORS.CAKE_100};
@@ -45,6 +48,10 @@ export const Logo = styled.div`
     font-size: 2.1rem;
     font-weight: bold;
     margin-left: 0.8rem;
+  }
+
+  span:hover {
+    color: ${({ theme }) => theme.COLORS.CAKE_200};
   }
 
   .logo {
@@ -102,6 +109,12 @@ export const Favorites = styled.button`
 
   @media (min-width: 1024px) {
     display: flex;
+
+    &:hover {
+      color: ${({ theme }) => theme.COLORS.CAKE_200};
+      transform: scale(1.1);
+      transition: .3s linear;
+    }
   }
 `;
 
@@ -115,6 +128,12 @@ export const Order = styled.button`
 
   @media (min-width: 1024px) {
     display: flex;
+
+    &:hover {
+      color: ${({ theme }) => theme.COLORS.CAKE_200};
+      transform: scale(1.1);
+      transition: .3s linear;
+    }
   }
 `;
 
@@ -125,6 +144,7 @@ export const Receipt = styled.button`
   display: none;
 
   @media (min-width: 1024px) {
+    align-items: center;
     background-color: ${({ theme }) => theme.COLORS.TOMATO_100};
     border-radius: 0.5rem;
     display: flex;
@@ -141,6 +161,11 @@ export const Receipt = styled.button`
     p {
       padding-left: 0.8rem;
     }
+
+    &:hover {
+      transform: scale(1.1);
+      transition: .3s linear;
+    }
   }
 `;
 
@@ -154,5 +179,11 @@ export const Logout = styled.button`
     display: flex;
     height: 2.2rem;
     width: 2.2rem;
+
+    svg:hover {
+      color: ${({ theme }) => theme.COLORS.TOMATO_400};
+      transform: scale(1.5);
+      transition: .3s linear;
+    }
   }
 `;

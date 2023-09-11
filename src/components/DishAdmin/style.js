@@ -132,6 +132,12 @@ export const Edition = styled.div`
   margin: 4.8rem 0 5.4rem;
   width: 100%;
 
+  button:hover {
+    box-shadow: 1px 2px 3px white;
+    transform: scale(1.1);
+    transition: 0.3s linear;
+  }
+
   .edit {
     background-color: ${({ theme }) => theme.COLORS.TOMATO_100};
     border: none;

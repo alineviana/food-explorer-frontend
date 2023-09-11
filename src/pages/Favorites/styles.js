@@ -50,6 +50,11 @@ export const Container = styled.div`
         font-weight: 500;
         margin: 1rem 0 0 1.3rem;
       }
+
+      img:hover, h3:hover, p:hover {
+        transform: scale(1.1);
+        transition: .3s linear;
+      }
     }
   }
 

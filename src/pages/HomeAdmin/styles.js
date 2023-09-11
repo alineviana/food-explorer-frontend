@@ -73,6 +73,8 @@ export const Container = styled.div`
     }
 
     .carousel_wrapper {
+      cursor: pointer;
+      
       h2 {
         font-size: 2.6rem;
         font-weight: 500;
