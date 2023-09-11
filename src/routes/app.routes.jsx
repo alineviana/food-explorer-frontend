@@ -10,6 +10,7 @@ import { NewDish } from '../pages/NewDish';
 import { Order } from '../pages/Order';
 import { Favorites } from '../pages/Favorites';
 import { OrderHistory } from '../pages/OrderHistory';
+import { OrdersAdmin } from '../pages/OrdersAdmin';
 
 export function AppRoutes() {
     return(
@@ -23,6 +24,7 @@ export function AppRoutes() {
             <Route path='/menuadmin' element={<MenuAdmin />} />
             <Route path='/newdish' element={<NewDish />} />
             <Route path='/order' element={<Order />} />
+            <Route path='/ordersadmin' element={<OrdersAdmin />} />
             <Route path='/favorites' element={<Favorites />} />
             <Route path='/orderhistory' element={<OrderHistory />} />
         </Routes>

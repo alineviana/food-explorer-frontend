@@ -1,12 +1,12 @@
 import { useNavigate } from "react-router-dom";
 import { Container, Link } from "./styles";
-import { Header } from "../../components/Header";
+import { HeaderAdmin } from "../../components/HeaderAdmin";
 import { PiCaretLeft } from "react-icons/pi";
 import { ButtonText } from "../../components/ButtonText";
 import { Section } from "../../components/Section";
 import { Footer } from "../../components/Footer";
 
-export function OrderHistory() {
+export function OrdersAdmin() {
   const navigate = useNavigate();
 
   function handleBack() {
@@ -15,13 +15,14 @@ export function OrderHistory() {
 
   return (
     <Container>
-      <Header />
+      <HeaderAdmin />
 
       <main>
         <Link>
           <PiCaretLeft />
           <ButtonText title="voltar" onClick={handleBack} />
         </Link>
+
         <Section className="details" title="Histórico de Pedidos">
           <div className="table">
             <table>
@@ -36,7 +37,13 @@ export function OrderHistory() {
 
               <tbody>
                 <tr>
-                  <td>🔴 Pendente</td>
+                  <td>
+                    <select>
+                      <option value="Pendente">🔴 Pendente</option>
+                      <option value="Preparando">🟠 Preparando</option>
+                      <option value="Entregue">🟢 Entregue</option>
+                    </select>
+                  </td>
                   <td>00000004</td>
                   <td>
                     1 x Salada Radish, 1 x Torradas de Parma, 1 x Chá de Canela,
@@ -45,7 +52,13 @@ export function OrderHistory() {
                   <td>20/05 às 18h00</td>
                 </tr>
                 <tr>
-                  <td>🟢 Entregue</td>
+                  <td>
+                    <select>
+                      <option value="Pendente">🔴 Pendente</option>
+                      <option value="Preparando">🟠 Preparando</option>
+                      <option value="Entregue">🟢 Entregue</option>
+                    </select>
+                  </td>
                   <td>00000004</td>
                   <td>
                     1 x Salada Radish, 1 x Torradas de Parma, 1 x Chá de Canela,
@@ -54,7 +67,13 @@ export function OrderHistory() {
                   <td>20/05 às 18h00</td>
                 </tr>
                 <tr>
-                  <td>🟠 Preparando</td>
+                  <td>
+                    <select>
+                      <option value="Pendente">🔴 Pendente</option>
+                      <option value="Preparando">🟠 Preparando</option>
+                      <option value="Entregue">🟢 Entregue</option>
+                    </select>
+                  </td>
                   <td>00000004</td>
                   <td>
                     1 x Salada Radish, 1 x Torradas de Parma, 1 x Chá de Canela,

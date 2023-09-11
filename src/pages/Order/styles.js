@@ -16,7 +16,13 @@ export const Container = styled.div`
     background: ${({ theme }) => theme.COLORS.DARK_100};
     color: ${({ theme }) => theme.COLORS.LIGHT_300};
     display: flex;
+    flex-direction: column;
     justify-content: space-around;
+
+    .sections_wrapper {
+      display: flex;
+      justify-content: space-around;
+    }
 
     .details {
       h2 {
@@ -76,6 +82,40 @@ export const Container = styled.div`
 
     .advance_button {
       display: none;
+    }
+  }
+`;
+
+export const Link = styled.button`
+  align-items: center;
+  background-color: transparent;
+  border: none;
+  color: ${({ theme }) => theme.COLORS.LIGHT_100};
+  display: flex;
+  margin-top: 3.2rem;
+
+  svg {
+    align-content: center;
+    height: 3.2rem;
+    margin-left: 5.6rem;
+    margin-right: 0.5rem;
+    width: 1.2rem;
+  }
+
+  svg:hover,
+  :hover {
+    color: ${({ theme }) => theme.COLORS.TOMATO_400};
+  }
+
+  @media (min-width: 1024px) {
+    svg {
+      height: 2.8rem;
+      width: 3rem;
+    }
+
+    button {
+      font-size: 2rem;
+      font-weight: bold;
     }
   }
 `;
@@ -147,7 +187,7 @@ export const Pay = styled.div`
     .qrcode_image {
       display: flex;
       justify-content: center;
-      margin: 5.7rem;
+      margin: 4rem;
     }
 
     .pay_approved {
@@ -155,10 +195,10 @@ export const Pay = styled.div`
       color: ${({ theme }) => theme.COLORS.LIGHT_600};
       display: flex;
       flex-direction: column;
-      font-family: 'Roboto', serif;
+      font-family: "Roboto", serif;
       font-size: 2.4rem;
       justify-content: center;
-      margin: 5.9rem;
+      margin: 4rem;
     }
   }
 `;
@@ -166,20 +206,20 @@ export const Pay = styled.div`
 export const Form = styled.form`
   display: flex;
   flex-direction: column;
-  font-family: 'Roboto', serif;
+  font-family: "Roboto", serif;
   font-size: 1.6rem;
   gap: 3.7rem;
-  margin: 5.9rem auto;
+  margin: auto;
   width: 40.8rem;
   align-items: center;
-  
+
   label {
     display: flex;
     flex-direction: column;
     width: 100%;
   }
-  
-  input{
+
+  input {
     background-color: transparent;
     border: 1px solid white;
     border-radius: 5px;
@@ -201,7 +241,7 @@ export const Form = styled.form`
     border-radius: 5px;
     color: ${({ theme }) => theme.COLORS.LIGHT_100};
     display: flex;
-    font-family: 'Poppins', serif;
+    font-family: "Poppins", serif;
     font-size: 1.4rem;
     height: 5.6rem;
     justify-content: center;

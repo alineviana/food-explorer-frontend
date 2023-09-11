@@ -21,7 +21,7 @@ export const Container = styled.div`
         font-family: "Poppins", serif;
         font-size: 3.2rem;
         font-weight: 500;
-        margin: 4rem 0 2.7rem 12.3rem;
+        margin: 2.5rem 0 2.7rem 12.3rem;
       }
     }
 
@@ -57,8 +57,18 @@ export const Container = styled.div`
       td:nth-child(1) {
         border-left: none;
       }
+
+      select {
+        background-color: ${({ theme }) => theme.COLORS.DARK_700};
+        color: ${({ theme }) => theme.COLORS.LIGHT_100};
+        border: none;
+        border-radius: 5px;
+        height: 4.8rem;
+        text-align: center;
+        width: 17.5rem;
+      }
     }
-  }  
+  }
 `;
 
 export const Link = styled.button`

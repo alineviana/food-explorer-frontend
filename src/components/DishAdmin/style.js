@@ -29,12 +29,12 @@ export const Link = styled.button`
 
   @media(min-width: 1024px) {
     svg {
-      height: 3.2rem;
-      width: 3.2rem;
+      height: 2.8rem;
+      width: 3rem;
     }
 
     button {
-      font-size: 2.4rem;
+      font-size: 2rem;
       font-weight: bold;
     }
   }
