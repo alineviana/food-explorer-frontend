@@ -2,9 +2,9 @@ import { useAuth } from "../../hooks/auth";
 import { useNavigate } from "react-router-dom";
 import {
   Container,
-  Menu,
   Logo,
   Search,
+  Menu,
   Favorites,
   Order,
   Receipt,
@@ -16,10 +16,17 @@ import { BsHexagonFill } from "react-icons/bs";
 import { FiSearch } from "react-icons/fi";
 import { PiReceiptBold } from "react-icons/pi";
 import { LuLogOut } from "react-icons/lu";
+import { Sidebar } from "../Sidebar";
+import { useState } from "react";
 
 export function Header({ setSearch }) {
   const { signOut } = useAuth();
   const navigate = useNavigate();
+  const [sidebar, setSidebar] = useState(false);
+
+  function showSiderbar() {
+    setSidebar(!sidebar);
+  }
 
   function handleHome() {
     navigate("/");
@@ -45,7 +52,8 @@ export function Header({ setSearch }) {
   return (
     <Container>
       <Menu>
-        <AiOutlineMenu />
+        <AiOutlineMenu onClick={showSiderbar} />
+        {sidebar && <Sidebar active={setSidebar} setSearch={setSearch} />}
       </Menu>
 
       <Logo onClick={handleHome}>
