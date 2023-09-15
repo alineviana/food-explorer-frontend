@@ -22,13 +22,24 @@ export const Container = styled.div`
         font-family: "Poppins", serif;
         font-size: 3.2rem;
         font-weight: 500;
-        margin: 5.6rem 0 2.7rem 12.3rem;
+        margin: 5.6rem 0 2.7rem 6rem;
+      }
+    }
+
+    .dishes_wrapper {
+      p {
+        color: ${({ theme }) => theme.COLORS.TOMATO_400};
+        font-family: "Poppins", serif;
+        font-size: 1.8rem;
+        margin-left: 3.5rem;
+        text-align: center;
+        width: 85%;
       }
     }
 
     .info_dish {
       display: flex;
-      margin: 1.6rem 0 2.5rem 8rem;
+      margin: 1.6rem 0 2.5rem 2.5rem;
 
       img {
         height: 10rem;
@@ -43,15 +54,20 @@ export const Container = styled.div`
         margin: 2.5rem 0 0 1.3rem;
       }
 
-      p {
+      button {
+        background-color: transparent;
+        border: none;
         color: ${({ theme }) => theme.COLORS.TOMATO_400};
         font-size: 1.2rem;
         font-family: "Roboto", serif;
         font-weight: 500;
-        margin: 1rem 0 0 1.3rem;
+        margin: 1rem 0 0 1.8rem;
       }
 
-      img:hover, h3:hover, p:hover {
+      button:hover {
+        color: ${({ theme }) => theme.COLORS.TOMATO_300};
+        cursor: pointer;
+        font-size: 1.4rem;
         transform: scale(1.1);
         transition: .3s linear;
       }
@@ -63,6 +79,13 @@ export const Container = styled.div`
       display: flex;
       flex-wrap: wrap;
       gap: 4.8rem;
+
+      p {
+        display: flex;
+        justify-content: center;
+        font-size: 2rem;
+        margin-top: 5rem;
+      }
     }
   }
 `;
@@ -83,7 +106,7 @@ export const Link = styled.button`
     width: 1.2rem;
   }
 
-  svg:hover, :hover {
+  :hover {
     color: ${({ theme }) => theme.COLORS.TOMATO_400};
   }
 

@@ -4,7 +4,7 @@ import { Container, Content } from "./styles";
 import { FaTimes } from "react-icons/fa";
 import { FiSearch } from "react-icons/fi";
 import { Input } from "../Input";
-import { SidebarItem } from "../SidebarItem";
+import { ButtonText } from "../ButtonText";
 
 export function Sidebar({ active, setSearch }) {
   const { signOut } = useAuth();
@@ -41,8 +41,8 @@ export function Sidebar({ active, setSearch }) {
       </div>
 
       <Content>
-        <SidebarItem title="Meus favoritos" onClick={handleFavorites} />
-        <SidebarItem title="Sair" onClick={handleSignOut} />
+        <ButtonText title="Meus favoritos" onClick={handleFavorites} className="my_favorites" />
+        <ButtonText title="Sair" onClick={handleSignOut} />
       </Content>
     </Container>
   );

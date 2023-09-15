@@ -22,10 +22,9 @@ export const Container = styled.div`
     width: 2.4rem;
   }
 
-  .heart:active {
-    color: ${({ theme }) => theme.COLORS.TOMATO_100};
+  .heart_fill {
+    color: ${({ theme }) => theme.COLORS.TOMATO_200};
     border: none;
-    fill: red;
   }
 
   img {

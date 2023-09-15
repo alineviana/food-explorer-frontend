@@ -52,5 +52,19 @@ export const Container = styled.div`
 `;
 
 export const Content = styled.div`
-  margin-top: 3.6rem;
+  button {
+    border-bottom-color: ${({ theme }) => theme.COLORS.LIGHT_700};
+    border-bottom-style: solid;
+    border-bottom-width: 1px;
+    color: ${({ theme }) => theme.COLORS.LIGHT_100};
+    cursor: pointer;
+    
+    display: flex;
+    font-family: "Poppins", serif;
+    font-size: 2.2rem;
+    font-weight: 200;
+    margin: 3.2rem 10rem 0 2.5rem;
+    padding: 1rem;
+    width: 85%;
+  }
 `;

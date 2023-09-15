@@ -1,14 +1,87 @@
+import { useState, useEffect } from "react";
+import { api } from "../../services/api";
+import { useAuth } from "../../hooks/auth";
 import { Container } from "./style";
 import { Counter } from "../Counter";
 import { ButtonText } from "../ButtonText";
 import { VscChevronRight } from "react-icons/vsc";
-import { SlHeart } from "react-icons/sl";
+import { IoIosHeart } from "react-icons/io";
+import { IoIosHeartEmpty } from "react-icons/io";
 
-export function FoodCard({ data, image, name, description, price, detailsDish, ...rest }) {
+export function FoodCard({
+  data,
+  image,
+  name,
+  description,
+  price,
+  detailsDish,
+  ...rest
+}) {
+  const [isFavorite, setIsFavorite] = useState(false);
+  const [favoriteId, setFavoriteId] = useState(null);
+  const { user } = useAuth();
+
+  async function handleFavorite(id) {
+    try {
+      if (isFavorite) {
+        await removeFavorite(id);
+      } else {
+        await api.post("/favorites", { user_id: user.id, dish_id: data.id });
+        setIsFavorite(true);
+      }
+    } catch (error) {
+      alert("Erro ao adicionar ou remover prato dos favoritos!");
+    }
+  }
+
+  async function removeFavorite(id) {
+    try {
+      await api.delete(`/favorites/${user.id}/${id}`);
+      setIsFavorite(false);
+    } catch (error) {
+      alert("Erro ao remover o prato dos favoritos!");
+    }
+  }
+
+  useEffect(() => {
+    async function checkFavorite() {
+      try {
+        const response = await api.get(`/favorites/check?user_id=${user.id}&dish_id=${data.id}`);
+        setIsFavorite(response.data.isFavorite);
+      } catch (error) {
+        alert("Erro ao buscar os pratos adicionados aos favoritos.");
+      }
+    }
+
+    async function fetchFavoriteId() {
+      try {
+        const response = await api.get(`/favorites?user_id=${user.id}`);
+
+        if (response.data.length > 0) {
+          setFavoriteId(response.data[0].id);
+        }
+      } catch (error) {
+        alert("Erro ao buscar o id do prato adicionado aos favoritos!");
+      }
+    }
+
+    if (user) {
+      checkFavorite();
+      fetchFavoriteId();
+    }
+  }, [data.id, user]);
+
   return (
     <Container {...rest}>
       <button className="heart">
-        <SlHeart />
+        {isFavorite ? (
+          <IoIosHeart
+            className="heart_fill"
+            onClick={() => handleFavorite(favoriteId)}
+          />
+        ) : (
+          <IoIosHeartEmpty onClick={() => handleFavorite(favoriteId)} />
+        )}
       </button>
 
       <img src={image} alt={name} onClick={() => detailsDish(data.id)} />

@@ -4,7 +4,6 @@ import { DishesAdmin } from '../pages/DishesAdmin';
 import { EditDish } from '../pages/EditDish';
 import { Home } from '../pages/Home';
 import { HomeAdmin } from '../pages/HomeAdmin';
-import { MenuAdmin } from '../pages/MenuAdmin';
 import { NewDish } from '../pages/NewDish';
 import { Order } from '../pages/Order';
 import { Favorites } from '../pages/Favorites';
@@ -19,7 +18,6 @@ export function AppRoutes() {
             <Route path='/dishes/:id' element={<Dishes />} />
             <Route path='/dishesadmin/:id' element={<DishesAdmin />} />
             <Route path='/editdish/:id' element={<EditDish />} />
-            <Route path='/menuadmin' element={<MenuAdmin />} />
             <Route path='/newdish' element={<NewDish />} />
             <Route path='/order' element={<Order />} />
             <Route path='/ordersadmin' element={<OrdersAdmin />} />
