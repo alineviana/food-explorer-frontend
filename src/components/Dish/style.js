@@ -133,12 +133,6 @@ export const Order = styled.div`
   display: flex;
   margin: 4.8rem 0 5.4rem;
 
-  button:hover {
-    box-shadow: 1px 2px 3px white;
-    transform: scale(1.1);
-    transition: 0.3s linear;
-  }
-
   .pedir {
     align-items: center;
     background-color: ${({ theme }) => theme.COLORS.TOMATO_100};
@@ -184,6 +178,12 @@ export const Order = styled.div`
       justify-content: center;
       margin-left: 1.5rem;
       width: 18rem;
+    }
+
+    .incluir:hover {
+      box-shadow: 1px 2px 3px white;
+      transform: scale(1.1);
+      transition: 0.3s linear;
     }
   }
 `;

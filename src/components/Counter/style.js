@@ -25,6 +25,5 @@ export const Count = styled.div`
 
   svg:hover {
     color: ${({ theme }) => theme.COLORS.TOMATO_200};
-    transition: 0.3s linear;
   }
 `;
