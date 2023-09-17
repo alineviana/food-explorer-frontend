@@ -15,8 +15,6 @@ export function FoodCard({
   description,
   price,
   detailsDish,
-  quantity,
-  setQuantity,
   ...rest
 }) {
   const [isFavorite, setIsFavorite] = useState(false);
@@ -43,6 +41,25 @@ export function FoodCard({
     } catch (error) {
       alert("Erro ao remover o prato dos favoritos!");
     }
+  }
+
+  async function addDish() {
+    await api.post("/order", {
+      name: data.name,
+      quantity: data.quantity,
+      dish_id: data.id,
+      user_id: user.id,
+    });
+
+    setDishInList();
+  }
+
+  async function setDishInList() {
+    const response = await api.get(`/order/${user.id}`);
+    
+    const applicationLength = response.data.length;
+
+    localStorage.setItem("@foodexplorer:applicationLength", applicationLength);
   }
 
   useEffect(() => {
@@ -108,7 +125,7 @@ export function FoodCard({
 
       <div className="buttons">
         <Counter />
-        <ButtonText title="incluir"/>
+        <ButtonText title="incluir" onClick={addDish} />
       </div>
     </Container>
   );

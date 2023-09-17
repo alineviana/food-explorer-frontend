@@ -46,18 +46,34 @@ export const Container = styled.div`
         margin: 0 0 0 0.5rem;
         width: 10rem;
       }
+    }
+
+    .info_wrapper {
+      align-self: center;
+      display: flex;
+      flex-direction: column;
 
       h3 {
+        display: flex;
         font-family: "Poppins", serif;
         font-size: 2rem;
         font-weight: 500;
         margin: 2.5rem 0 0 1.3rem;
       }
 
+      p {
+        align-self: center;
+        font-family: "Roboto", serif;
+        font-size: 1.2rem;
+        font-weight: 300;
+        margin-left: 1.5rem;
+      }
+
       button {
         background-color: transparent;
         border: none;
         color: ${({ theme }) => theme.COLORS.TOMATO_400};
+        display: flex;
         font-size: 1.2rem;
         font-family: "Roboto", serif;
         font-weight: 500;

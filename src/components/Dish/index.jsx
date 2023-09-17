@@ -13,9 +13,25 @@ export function Dish() {
   const [ingredients, setIngredients] = useState([]);
   const params = useParams();
   const navigate = useNavigate();
+  const [dish, setDish] = useState();
+
+  const user = JSON.parse(localStorage.getItem("@foodexplorer:user"));
+  localStorage.setItem("@foodexplorer:dishes", JSON.stringify(dish));
 
   function handleBackHome() {
     navigate("/");
+  }
+
+  async function addDishInList() {
+    
+    const dishes = JSON.parse(localStorage.getItem("@rocketfood:dishes"));
+
+    await api.post("/order", {
+      name: data.name,
+      quantity: data.quantity,
+      dish_id: data.id,
+      user_id: user.id,
+    });
   }
 
   useEffect(() => {
@@ -66,12 +82,12 @@ export function Dish() {
 
               <Order>
                 <Counter />
-                <button className="pedir">
+                <button className="pedir" onClick={addDishInList}>
                   <PiReceiptBold />
                   pedir ∙ R$ {data.price}
                 </button>
-                <button className="incluir">
-                  incluir ∙ {" "}
+                <button className="incluir" onClick={addDishInList}>
+                  incluir ∙{" "}
                   {Number(data.price).toLocaleString("pt-br", {
                     style: "currency",
                     currency: "BRL",

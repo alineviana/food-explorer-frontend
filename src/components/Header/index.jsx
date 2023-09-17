@@ -10,6 +10,7 @@ import {
   Receipt,
   Logout,
 } from "./styles";
+import { api } from "../../services/api";
 import { Input } from "../../components/Input";
 import { AiOutlineMenu } from "react-icons/ai";
 import { BsHexagonFill } from "react-icons/bs";
@@ -17,12 +18,13 @@ import { FiSearch } from "react-icons/fi";
 import { PiReceiptBold } from "react-icons/pi";
 import { LuLogOut } from "react-icons/lu";
 import { Sidebar } from "../Sidebar";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 export function Header({ setSearch }) {
-  const { signOut } = useAuth();
+  const { signOut, user } = useAuth();
   const navigate = useNavigate();
   const [sidebar, setSidebar] = useState(false);
+  const [order, setOrder] = useState([]);
 
   function showSiderbar() {
     setSidebar(!sidebar);
@@ -48,6 +50,14 @@ export function Header({ setSearch }) {
     navigate("/");
     signOut();
   }
+
+  useEffect(() => {
+    async function getOrder() {
+      const response = await api.get(`/order/${user.id}`);
+      setOrder(response.data);
+    }
+    getOrder();
+  }, [order]);
 
   return (
     <Container>
@@ -77,7 +87,7 @@ export function Header({ setSearch }) {
 
       <Receipt onClick={handleOrder}>
         <PiReceiptBold />
-        <p>Pedidos (0)</p>
+        <p>Pedidos ({ order.length ?? 0 })</p>
       </Receipt>
 
       <Logout>

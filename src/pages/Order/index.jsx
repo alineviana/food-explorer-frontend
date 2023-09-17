@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { api } from "../../services/api";
 import { Container, Link, Pay, Form } from "./styles";
 import { Header } from "../../components/Header";
 import { Button } from "../../components/Button";
@@ -14,8 +15,12 @@ import payApprovedImg from "../../assets/payApproved.svg";
 import deliveredImg from "../../assets/delivered.svg";
 import { PiReceiptBold } from "react-icons/pi";
 import { Footer } from "../../components/Footer";
+import { useAuth } from "../../hooks/auth";
 
 export function Order() {
+  const { user } = useAuth();
+  const [order, setOrder] = useState([]);
+  const [removeOrder, setRemoveOrder] = useState([]);
   const [pix, setPix] = useState(false);
   const [credit, setCredit] = useState(true);
   const navigate = useNavigate();
@@ -61,7 +66,7 @@ export function Order() {
     setTimeout(() => {
       approvedPayment.classList.add("hidden");
       delivered.classList.remove("hidden");
-    }, 4000)
+    }, 5000);
   }
 
   async function handlePayment() {
@@ -78,9 +83,28 @@ export function Order() {
     delivered.classList.add("hidden");
 
     setTimeout(() => {
-      paymentFlow()
-    }, 3000);
+      paymentFlow();
+    }, 4000);
   }
+
+  useEffect(() => {
+    async function orderDishes() {
+      const response = await api.get(`/order/${user.id}`);
+      setOrder(response.data);
+      localStorage.setItem(
+        "@foodexplorer:total",
+        JSON.stringify(response.data)
+      );
+    }
+    orderDishes();
+  }, [order]);
+
+  useEffect(() => {
+    async function removeDish() {
+      await api.delete(`/order/${removeOrder}/${user.id}`);
+    }
+    removeDish();
+  }, [removeOrder]);
 
   useEffect(() => {
     const pix = document.querySelector("#pix");
@@ -94,7 +118,7 @@ export function Order() {
     approvedPayment.classList.add("hidden");
     delivered.classList.add("hidden");
     credit.classList.remove("hidden");
-  }, [handlePayment]);
+  }, []);
 
   return (
     <Container>
@@ -107,36 +131,39 @@ export function Order() {
 
         <div className="sections_wrapper">
           <Section className="details" title="Meu pedido">
-            <div className="info_dish">
-              <img src="../../src/assets/coffee.svg" alt="" />
-              <div className="info_wrapper">
-                <h3>
-                  1x <span>Café Expresso</span> R$ 25,97
-                </h3>
-                <button>Excluir</button>
-              </div>
-            </div>
+            {order &&
+              order.map((item, index) => {
+                return (
+                  <li className="info_dish" key={String(index)}>
+                    <img
+                      src={`${api.defaults.baseURL}/files/${item.image}`}
+                      alt={item.name}
+                    />
+                    <div className="info_wrapper">
+                      <h3>
+                        <span>
+                          {item.quantity} x {item.name}
+                        </span>
+                        <p>
+                          {item.price.toLocaleString("pt-BR", {
+                            style: "currency",
+                            currency: "BRL",
+                          })}
+                        </p>
+                      </h3>
+                      <button
+                        onClick={() => {
+                          setRemoveOrder(item.dish_id);
+                        }}
+                      >
+                        Excluir
+                      </button>
+                    </div>
+                  </li>
+                );
+              })}
 
-            <div className="info_dish">
-              <img src="../../src/assets/coffee.svg" alt="" />
-              <div className="info_wrapper">
-                <h3>
-                  1x <span>Café Expresso</span> R$ 25,97
-                </h3>
-                <button>Excluir</button>
-              </div>
-            </div>
-
-            <div className="info_dish">
-              <img src="../../src/assets/coffee.svg" alt="" />
-              <div className="info_wrapper">
-                <h3>
-                  1x <span>Café Expresso</span> R$ 25,97
-                </h3>
-                <button>Excluir</button>
-              </div>
-            </div>
-            <p className="total_price">Total: R$ 103,88</p>
+            <p className="total_price">Total: 139,98</p>
             <ButtonText className="advance_button" title="Avançar" />
           </Section>
 
