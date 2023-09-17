@@ -34,9 +34,14 @@ export const Container = styled.div`
       width: 113rem;
 
       th {
+        background-color: ${({ theme }) => theme.COLORS.DARK_700};
+        color: ${({ theme }) => theme.COLORS.LIGHT_400};
         border-left: 1px solid #4d585e;
         border-bottom: 1px solid #4d585e;
+        font-size: 1.6rem;
         height: 6.4rem;
+        text-transform: uppercase;
+        text-shadow: 2px 2px 2px black;
       }
 
       th:nth-child(1) {

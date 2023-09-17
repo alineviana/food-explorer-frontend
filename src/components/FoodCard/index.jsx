@@ -15,6 +15,8 @@ export function FoodCard({
   description,
   price,
   detailsDish,
+  quantity,
+  setQuantity,
   ...rest
 }) {
   const [isFavorite, setIsFavorite] = useState(false);
@@ -46,7 +48,9 @@ export function FoodCard({
   useEffect(() => {
     async function checkFavorite() {
       try {
-        const response = await api.get(`/favorites/check?user_id=${user.id}&dish_id=${data.id}`);
+        const response = await api.get(
+          `/favorites/check?user_id=${user.id}&dish_id=${data.id}`
+        );
         setIsFavorite(response.data.isFavorite);
       } catch (error) {
         alert("Erro ao buscar os pratos adicionados aos favoritos.");
@@ -104,7 +108,7 @@ export function FoodCard({
 
       <div className="buttons">
         <Counter />
-        <ButtonText title="incluir" />
+        <ButtonText title="incluir"/>
       </div>
     </Container>
   );

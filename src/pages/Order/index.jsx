@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Container, Link, Pay, Form } from "./styles";
 import { Header } from "../../components/Header";
@@ -10,16 +11,90 @@ import creditoImg from "../../assets/credito.svg";
 import qrcodeImg from "../../assets/qrcode.svg";
 import relogioImg from "../../assets/relogio.svg";
 import payApprovedImg from "../../assets/payApproved.svg";
-import entregueImg from "../../assets/entregue.svg";
+import deliveredImg from "../../assets/delivered.svg";
 import { PiReceiptBold } from "react-icons/pi";
 import { Footer } from "../../components/Footer";
 
 export function Order() {
+  const [pix, setPix] = useState(false);
+  const [credit, setCredit] = useState(true);
   const navigate = useNavigate();
 
   function handleBack() {
     navigate(-1);
   }
+
+  async function handlePix() {
+    // await api.put(`/orders/${user.id}`, { payment_method: "pix" });
+
+    const pix = document.querySelector("#pix");
+    const credit = document.querySelector("#credit");
+
+    setPix(true);
+    setCredit(false);
+
+    pix.classList.remove("hidden");
+    credit.classList.add("hidden");
+  }
+
+  async function handleCredit() {
+    // await api.put(`/orders/${user.id}`, { payment_method: "credit" });
+
+    const pix = document.querySelector("#pix");
+    const credit = document.querySelector("#credit");
+
+    setPix(false);
+    setCredit(true);
+
+    pix.classList.add("hidden");
+    credit.classList.remove("hidden");
+  }
+
+  function paymentFlow() {
+    const awaitPayment = document.querySelector("#awaitPayment");
+    const approvedPayment = document.querySelector("#approvedPayment");
+    const delivered = document.querySelector("#delivered");
+
+    awaitPayment.classList.add("hidden");
+    approvedPayment.classList.remove("hidden");
+
+    setTimeout(() => {
+      approvedPayment.classList.add("hidden");
+      delivered.classList.remove("hidden");
+    }, 4000)
+  }
+
+  async function handlePayment() {
+    const credit = document.querySelector("#credit");
+    const pix = document.querySelector("#pix");
+    const awaitPayment = document.querySelector("#awaitPayment");
+    const approvedPayment = document.querySelector("#approvedPayment");
+    const delivered = document.querySelector("#delivered");
+
+    credit.classList.add("hidden");
+    pix.classList.add("hidden");
+    awaitPayment.classList.remove("hidden");
+    approvedPayment.classList.add("hidden");
+    delivered.classList.add("hidden");
+
+    setTimeout(() => {
+      paymentFlow()
+    }, 3000);
+  }
+
+  useEffect(() => {
+    const pix = document.querySelector("#pix");
+    const credit = document.querySelector("#credit");
+    const awaitPayment = document.querySelector("#awaitPayment");
+    const approvedPayment = document.querySelector("#approvedPayment");
+    const delivered = document.querySelector("#delivered");
+
+    pix.classList.add("hidden");
+    awaitPayment.classList.add("hidden");
+    approvedPayment.classList.add("hidden");
+    delivered.classList.add("hidden");
+    credit.classList.remove("hidden");
+  }, [handlePayment]);
 
   return (
     <Container>
@@ -35,24 +110,30 @@ export function Order() {
             <div className="info_dish">
               <img src="../../src/assets/coffee.svg" alt="" />
               <div className="info_wrapper">
-                <h3>Café Expresso</h3>
-                <p>Remover dos favoritos</p>
+                <h3>
+                  1x <span>Café Expresso</span> R$ 25,97
+                </h3>
+                <button>Excluir</button>
               </div>
             </div>
 
             <div className="info_dish">
               <img src="../../src/assets/coffee.svg" alt="" />
               <div className="info_wrapper">
-                <h3>Café Expresso</h3>
-                <p>Remover dos favoritos</p>
+                <h3>
+                  1x <span>Café Expresso</span> R$ 25,97
+                </h3>
+                <button>Excluir</button>
               </div>
             </div>
 
             <div className="info_dish">
               <img src="../../src/assets/coffee.svg" alt="" />
               <div className="info_wrapper">
-                <h3>Café Expresso</h3>
-                <p>Remover dos favoritos</p>
+                <h3>
+                  1x <span>Café Expresso</span> R$ 25,97
+                </h3>
+                <button>Excluir</button>
               </div>
             </div>
             <p className="total_price">Total: R$ 103,88</p>
@@ -61,57 +142,82 @@ export function Order() {
 
           <Pay>
             <Section className="payment" title="Pagamento">
-              <div className="section_wrapper">
-                <div className="buttons_wrapper">
-                  <button className="pix_button">
-                    <img src={pixImg} alt="Imagem de Pix" />
-                    <span>PIX</span>
-                  </button>
+              <div className="wrapper">
+                <div className="section_wrapper_credit">
+                  <div className="buttons_wrapper">
+                    <button
+                      className={`payment-credit ${credit ? "true" : "false"}`}
+                      onClick={handleCredit}
+                    >
+                      <img src={creditoImg} alt="Imagem de cartão de crédito" />
+                      <span>Crédito</span>
+                    </button>
 
-                  <button className="credit_button">
-                    <img src={creditoImg} alt="Imagem de cartão de crédito" />
-                    <span>Crédito</span>
-                  </button>
-                </div>
+                    <button
+                      className={`payment-pix ${pix ? "true" : "false"}`}
+                      onClick={handlePix}
+                    >
+                      <img src={pixImg} alt="Imagem PIX" />
+                      <span>PIX</span>
+                    </button>
+                  </div>
 
-                <div className="qrcode_image">
-                  <img src={qrcodeImg} alt="Imagem QRCODE" />
-                </div>
+                  <div className="data_pay" id="credit">
+                    <Form>
+                      <label>
+                        Número do Cartão
+                        <input
+                          disabled
+                          placeholder="0000 0000 0000 0000"
+                          type="number"
+                        />
+                      </label>
 
-                <div className="data_pay" hidden>
-                  <Form>
-                    <label>
-                      Número do Cartão
-                      <input
-                        disabled
-                        placeholder="0000 0000 0000 0000"
-                        type="number"
+                      <div className="validity_and_cvc">
+                        <label>
+                          Validade
+                          <input disabled placeholder="04/25" type="number" />
+                        </label>
+
+                        <label>
+                          CVC
+                          <input disabled placeholder="000" type="number" />
+                        </label>
+                      </div>
+
+                      <Button
+                        icon={PiReceiptBold}
+                        title="Finalizar pagamento"
+                        onClick={handlePayment}
                       />
-                    </label>
-
-                    <div className="validity_and_cvc">
-                      <label>
-                        Validade
-                        <input disabled placeholder="04/25" type="number" />
-                      </label>
-
-                      <label>
-                        CVC
-                        <input disabled placeholder="000" type="number" />
-                      </label>
-                    </div>
-
-                    <Button icon={PiReceiptBold} title="Finalizar pagamento" />
-                  </Form>
+                    </Form>
+                  </div>
                 </div>
 
-                <div className="pay_approved">
-                  <img src={relogioImg} alt="Imagem de um relógio" hidden />
-                  <img src={payApprovedImg} alt="Imagem de sinal de visto" hidden/>
+                <div className="section_wrapper_pix">
                   <img
-                    src={entregueImg}
+                    className="qrcode_image"
+                    src={qrcodeImg}
+                    alt="Imagem QRCODE"
+                    id="pix"
+                  />
+                </div>
+
+                <div className="section_wrapper_payment">
+                  <img
+                    src={relogioImg}
+                    alt="Imagem de um relógio"
+                    id="awaitPayment"
+                  />
+                  <img
+                    src={payApprovedImg}
+                    alt="Imagem de sinal de visto"
+                    id="approvedPayment"
+                  />
+                  <img
+                    src={deliveredImg}
                     alt="Imagem de um garfo e uma faca"
-                    hidden
+                    id="delivered"
                   />
                 </div>
               </div>

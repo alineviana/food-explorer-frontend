@@ -19,6 +19,10 @@ export const Container = styled.div`
     flex-direction: column;
     justify-content: space-around;
 
+    .hidden {
+      display: none;
+    }
+
     .sections_wrapper {
       display: flex;
       justify-content: space-around;
@@ -29,7 +33,7 @@ export const Container = styled.div`
         font-family: "Poppins", serif;
         font-size: 3.2rem;
         font-weight: 500;
-        margin: 5.6rem 0 2.7rem 3.5rem;
+        margin: 2.5rem 0 2.7rem 2rem;
       }
     }
 
@@ -39,7 +43,7 @@ export const Container = styled.div`
 
       img {
         height: 10rem;
-        margin: 0 0 0 1.9rem;
+        margin: 0 0 0 0.5rem;
         width: 10rem;
       }
 
@@ -50,7 +54,9 @@ export const Container = styled.div`
         margin: 2.5rem 0 0 1.3rem;
       }
 
-      p {
+      button {
+        background-color: transparent;
+        border: none;
         color: ${({ theme }) => theme.COLORS.TOMATO_400};
         font-size: 1.2rem;
         font-family: "Roboto", serif;
@@ -123,39 +129,40 @@ export const Link = styled.button`
 export const Pay = styled.div`
   background-color: ${({ theme }) => theme.COLORS.DARK_100};
 
-  .payment {
-    display: none;
+  section {
+    margin-bottom: 6rem;
   }
 
   @media (min-width: 1024px) {
-    .section_wrapper {
-      border: 1px solid #76797b;
-      border-radius: 8px;
-    }
-
-    .payment {
-      display: block;
-      margin-bottom: 8rem;
-      width: 53rem;
-    }
-
     h2 {
       font-family: "Poppins", serif;
       font-size: 3.2rem;
       font-weight: 500;
-      margin: 5.6rem 0 2.7rem 3.5rem;
+      margin: 2.5rem 0 2.7rem 3.5rem;
+    }
+
+    .wrapper {
+      border: 1px solid #4D585E;
+      img {
+        padding: 5rem 0;
+      }
+    }
+
+    .section_wrapper_credit {
+      align-items: center;
+      display: flex;
+      flex-direction: column;
     }
 
     .buttons_wrapper {
       display: flex;
     }
 
-    .pix_button,
-    .credit_button {
+    .payment-pix, .payment-credit {
       align-items: center;
-      border: none;
       display: flex;
       background-color: ${({ theme }) => theme.COLORS.DARK_100};
+      border: none;
       color: ${({ theme }) => theme.COLORS.LIGHT_100};
       font-family: "Roboto", serif;
       font-size: 1.6rem;
@@ -168,50 +175,52 @@ export const Pay = styled.div`
       }
     }
 
-    .pix_button {
+    .payment-pix {
+      border-top: 1px solid #76797b;
+      border-left: 1px solid #76797b;
       border-bottom: 1px solid #76797b;
-      border-radius: 8px 0 0 0;
+      border-radius: 0 5px 0 0;
     }
 
-    .pix_button:hover,
-    .credit_button:hover {
+    .payment-credit {
+      border-top: 1px solid #76797b;
+      border-bottom: 1px solid #76797b;
+      border-radius: 5px 0 0 0;
+    }
+
+    .payment-pix:hover, .payment-credit:hover {
       background-color: ${({ theme }) => theme.COLORS.DARK_800};
     }
 
-    .credit_button {
-      border-left: 1px solid #76797b;
-      border-bottom: 1px solid #76797b;
-      border-radius: 0 8px 0 0;
+    .section_wrapper_pix {
+      align-items: center;
+      display: flex;
+      flex-direction: column;
     }
 
     .qrcode_image {
-      display: flex;
-      justify-content: center;
+      height: 25rem;
       margin: 4rem;
+      width: 25rem;
     }
 
-    .pay_approved {
+    .section_wrapper_payment {
       align-items: center;
-      color: ${({ theme }) => theme.COLORS.LIGHT_600};
       display: flex;
       flex-direction: column;
-      font-family: "Roboto", serif;
-      font-size: 2.4rem;
-      justify-content: center;
-      margin: 4rem;
     }
   }
 `;
 
 export const Form = styled.form`
+  align-items: center;
   display: flex;
   flex-direction: column;
   font-family: "Roboto", serif;
   font-size: 1.6rem;
   gap: 3.7rem;
-  margin: auto;
+  margin: 5.7rem 0;
   width: 40.8rem;
-  align-items: center;
 
   label {
     display: flex;
