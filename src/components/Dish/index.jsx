@@ -14,6 +14,9 @@ export function Dish() {
   const params = useParams();
   const navigate = useNavigate();
   const [dish, setDish] = useState();
+  const [quantity, setQuantity] = useState(1);
+  const [order, setOrder] = useState([]);
+  const [total, setTotal] = useState(0);
 
   const user = JSON.parse(localStorage.getItem("@foodexplorer:user"));
   localStorage.setItem("@foodexplorer:dishes", JSON.stringify(dish));
@@ -22,16 +25,26 @@ export function Dish() {
     navigate("/");
   }
 
-  async function addDishInList() {
-    
-    const dishes = JSON.parse(localStorage.getItem("@rocketfood:dishes"));
+  function handleDecrement() {
+    if (quantity > 1) {
+      setQuantity(quantity - 1);
+    }
+  }
 
+  function handleIncrement() {
+    setQuantity(quantity + 1);
+  }
+
+  async function addDishInList(quantity) {
     await api.post("/order", {
       name: data.name,
-      quantity: data.quantity,
+      quantity: quantity,
+      total_price: Number(data.price) * Number(quantity),
       dish_id: data.id,
       user_id: user.id,
     });
+
+    alert("O prato foi adicionado ao carrinho!");
   }
 
   useEffect(() => {
@@ -51,6 +64,27 @@ export function Dish() {
 
     fetchIngredients();
   }, []);
+
+  useEffect(() => {
+    async function orderDishes() {
+      const response = await api.get(`/order/${user.id}`);
+      setOrder(response.data);
+      localStorage.setItem(
+        "@foodexplorer:totalOrder",
+        JSON.stringify(response.data)
+      );
+    }
+    orderDishes();
+  }, [order]);
+
+  useEffect(() => {
+    let total = 0;
+
+    order.forEach((dish) => {
+      total += Number(dish.total_price);
+    });
+    setTotal(total);
+  }, [order]);
 
   return (
     <Container>
@@ -81,14 +115,29 @@ export function Dish() {
               </section>
 
               <Order>
-                <Counter />
-                <button className="pedir" onClick={addDishInList}>
+                <Counter
+                  quantity={quantity}
+                  decrement={handleDecrement}
+                  increment={handleIncrement}
+                />
+                <button
+                  className="pedir"
+                  onClick={() => {
+                    addDishInList(quantity);
+                  }}
+                >
                   <PiReceiptBold />
-                  pedir ∙ R$ {data.price}
+                  pedir ∙{" "}
+                  {(quantity * data.price).toLocaleString("pt-br", {
+                    style: "currency",
+                    currency: "BRL",
+                  })}
                 </button>
-                <button className="incluir" onClick={addDishInList}>
+                <button className="incluir" onClick={() => {
+                    addDishInList(quantity);
+                  }}>
                   incluir ∙{" "}
-                  {Number(data.price).toLocaleString("pt-br", {
+                  {(quantity * data.price).toLocaleString("pt-br", {
                     style: "currency",
                     currency: "BRL",
                   })}

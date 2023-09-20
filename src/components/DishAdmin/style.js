@@ -53,8 +53,8 @@ export const Info = styled.div`
     margin-top: 1rem;
 
     img {
-      height: 26.4rem;
-      width: 26.4rem;
+      height: 22.4rem;
+      width: 22.4rem;
     }
   }
 
@@ -81,7 +81,8 @@ export const Info = styled.div`
       align-self: center;
       display: flex;
       flex-wrap: wrap;
-      gap: 1rem;
+      justify-content: center;
+      gap: 1.5rem;
       margin-top: 2.4rem;
       width: 80%;
     }
@@ -120,7 +121,7 @@ export const Info = styled.div`
 
       section {
         align-self: start;
-        gap: 1.3rem;
+        justify-content: flex-start;
       }
     }
   }

@@ -30,7 +30,7 @@ export const Container = styled.div`
       border-radius: 5px;
       font-family: "Roboto", serif;
       font-size: 1.4rem;
-      margin: auto;
+      margin: 2.5rem auto 5rem;
       width: 113rem;
 
       th {

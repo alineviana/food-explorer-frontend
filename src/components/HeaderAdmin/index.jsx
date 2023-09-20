@@ -1,4 +1,6 @@
 import { useAuth } from "../../hooks/auth";
+import { useState, useEffect } from "react";
+import { api } from "../../services/api";
 import {
   Container,
   Menu,
@@ -18,8 +20,9 @@ import { PiReceiptBold } from "react-icons/pi";
 import { LuLogOut } from "react-icons/lu";
 
 export function HeaderAdmin({ setSearch }) {
-  const { signOut } = useAuth();
+  const { signOut, user } = useAuth();
   const navigate = useNavigate();
+  const [order, setOrder] = useState([]);
 
   function handleHome() {
     navigate("/admin");
@@ -41,6 +44,15 @@ export function HeaderAdmin({ setSearch }) {
     navigate("/");
     signOut();
   }
+
+  useEffect(() => {
+    async function getOrder() {
+      const response = await api.get(`/orderhistory`);
+      setOrder(response.data);
+      console.log(response.data)
+    }
+    getOrder();
+  }, [order]);
 
   return (
     <Container>
@@ -72,7 +84,7 @@ export function HeaderAdmin({ setSearch }) {
 
       <Receipt onClick={handleOrders}>
         <PiReceiptBold />
-        <p>Pedidos (0)</p>
+        <p>Pedidos ({ order.length ?? 0 })</p>
       </Receipt>
 
       <Logout onClick={handleSignOut}>

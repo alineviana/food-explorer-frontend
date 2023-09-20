@@ -3,13 +3,11 @@ import { Container, Count } from "./style";
 import { FiMinus } from "react-icons/fi";
 import { FiPlus } from "react-icons/fi";
 
-export function Counter() {
-  const [quantity, setQuantity] = useState(1);
-
+export function Counter({ quantity, decrement, increment }) {
   return (
     <Container>
       <Count>
-        <button onClick={() => setQuantity(quantity > 0 ? quantity - 1 : 0)}>
+        <button onClick={decrement}>
           <FiMinus />
         </button>
       </Count>
@@ -17,7 +15,7 @@ export function Counter() {
       <span>{String(quantity).padStart(2, "0")}</span>
 
       <Count>
-        <button onClick={() => setQuantity(quantity + 1)}>
+        <button onClick={increment}>
           <FiPlus />
         </button>
       </Count>

@@ -27,6 +27,8 @@ export const Container = styled.div`
     }
 
     .dishes_wrapper {
+      gap: 1rem;
+
       p {
         color: ${({ theme }) => theme.COLORS.TOMATO_400};
         font-family: "Poppins", serif;
@@ -39,7 +41,7 @@ export const Container = styled.div`
 
     .info_dish {
       display: flex;
-      margin: 1.6rem 0 2.5rem 2.5rem;
+      margin: 1.6rem 0 5rem 2.5rem;
 
       img {
         height: 10rem;

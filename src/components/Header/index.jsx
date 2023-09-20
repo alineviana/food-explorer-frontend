@@ -86,8 +86,9 @@ export function Header({ setSearch }) {
       <Order onClick={handleOrderHistory}>Histórico de pedidos</Order>
 
       <Receipt onClick={handleOrder}>
+        <div className="order_quantity">{order.length ?? 0}</div>
         <PiReceiptBold />
-        <p>Pedidos ({ order.length ?? 0 })</p>
+        <p>Pedidos ({order.length ?? 0})</p>
       </Receipt>
 
       <Logout>

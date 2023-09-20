@@ -136,6 +136,26 @@ export const Receipt = styled.button`
     width: 2.6rem;
   }
 
+  .order_quantity {
+    align-items: center;
+    background-color: ${({ theme }) => theme.COLORS.TOMATO_200};
+    border-radius: 50%;
+    color: ${({ theme }) => theme.COLORS.LIGHT_100};
+    display: flex;
+
+    font-size: 1.4rem;
+    font-weight: 500;
+    justify-content: center;
+    line-height: 2.4rem;
+
+    position: absolute;
+    right: 2rem;
+    top: 4.8rem;
+
+    height: 2rem;
+    width: 2rem;
+  }
+
   p {
     display: none;
   }
@@ -150,6 +170,10 @@ export const Receipt = styled.button`
     margin-bottom: 4rem;
     padding: 1.6rem;
     width: 21.6rem;
+
+    .order_quantity {
+      display: none;
+    }
     
     p {
       display: flex;

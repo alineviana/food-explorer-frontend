@@ -20,6 +20,7 @@ export function FoodCard({
   const [isFavorite, setIsFavorite] = useState(false);
   const [favoriteId, setFavoriteId] = useState(null);
   const { user } = useAuth();
+  const [quantity, setQuantity] = useState(1);
 
   async function handleFavorite(id) {
     try {
@@ -43,24 +44,36 @@ export function FoodCard({
     }
   }
 
-  async function addDish() {
+  function handleDecrement() {
+    if (quantity > 1) {
+      setQuantity(quantity - 1);
+    }
+  }
+
+  function handleIncrement() {
+    setQuantity(quantity + 1);
+  }
+
+  async function addDish(quantity) {
     await api.post("/order", {
       name: data.name,
-      quantity: data.quantity,
+      quantity: quantity,
+      total_price: (Number(data.price) * Number(quantity)),
       dish_id: data.id,
       user_id: user.id,
     });
 
-    setDishInList();
+    // setDishInList();
+    alert("O prato foi adicionado ao carrinho!");
   }
 
-  async function setDishInList() {
-    const response = await api.get(`/order/${user.id}`);
+  // async function setDishInList() {
+  //   const response = await api.get(`/order/${user.id}`);
     
-    const applicationLength = response.data.length;
+  //   const applicationLength = response.data.length;
 
-    localStorage.setItem("@foodexplorer:applicationLength", applicationLength);
-  }
+  //   localStorage.setItem("@foodexplorer:applicationLength", applicationLength);
+  // }
 
   useEffect(() => {
     async function checkFavorite() {
@@ -124,8 +137,12 @@ export function FoodCard({
       </p>
 
       <div className="buttons">
-        <Counter />
-        <ButtonText title="incluir" onClick={addDish} />
+        <Counter 
+          quantity={quantity} 
+          decrement={handleDecrement}
+          increment={handleIncrement} 
+        />
+          <ButtonText title="incluir" onClick={() => {addDish(quantity)}} />
       </div>
     </Container>
   );

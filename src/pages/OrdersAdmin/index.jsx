@@ -1,3 +1,5 @@
+import { useState, useEffect } from "react";
+import { api } from "../../services/api";
 import { useNavigate } from "react-router-dom";
 import { Container, Link } from "./styles";
 import { HeaderAdmin } from "../../components/HeaderAdmin";
@@ -8,10 +10,54 @@ import { Footer } from "../../components/Footer";
 
 export function OrdersAdmin() {
   const navigate = useNavigate();
+  const [orderHistory, setOrderHistory] = useState([]);
+  const user = JSON.parse(localStorage.getItem("@foodexplorer:user"));
 
   function handleBack() {
     navigate(-1);
   }
+
+  const handleOptionStatus = async (value, id) => {
+    await api.put(`/orderHistory`, {
+      status: value,
+      code: id,
+    });
+  };
+
+  function formatDateTime(dateTime) {
+    const dateTimeString = new Date(dateTime);
+
+    const formatDate = dateTimeString.toLocaleDateString("pt-BR", {
+      day: "2-digit",
+      month: "2-digit",
+      year: "numeric",
+    });
+
+    const formatTime = dateTimeString.toLocaleTimeString("pt-BR", {
+      hour: "2-digit",
+      minute: "2-digit",
+    });
+
+    return `${formatDate} às ${formatTime}`;
+  }
+
+  useEffect(() => {
+    try {
+      async function getOrderHistory() {
+        const response = await api.get(`/orderhistory/${user.id}`);
+        setOrderHistory(response.data);
+      }
+      getOrderHistory();
+    } catch (err) {
+      if (err.response) {
+        alert(err.response.data.message);
+      } else {
+        alert(
+          "Não foi possível carregar o histórico de pedidos, tente novamente!"
+        );
+      }
+    }
+  }, [orderHistory]);
 
   return (
     <Container>
@@ -36,51 +82,28 @@ export function OrdersAdmin() {
               </thead>
 
               <tbody>
-                <tr>
-                  <td>
-                    <select>
-                      <option value="Pendente">🔴 Pendente</option>
-                      <option value="Preparando">🟠 Preparando</option>
-                      <option value="Entregue">🟢 Entregue</option>
-                    </select>
-                  </td>
-                  <td>00000004</td>
-                  <td>
-                    1 x Salada Radish, 1 x Torradas de Parma, 1 x Chá de Canela,
-                    1 x Suco de Maracujá
-                  </td>
-                  <td>20/05 às 18h00</td>
-                </tr>
-                <tr>
-                  <td>
-                    <select>
-                      <option value="Pendente">🔴 Pendente</option>
-                      <option value="Preparando">🟠 Preparando</option>
-                      <option value="Entregue">🟢 Entregue</option>
-                    </select>
-                  </td>
-                  <td>00000004</td>
-                  <td>
-                    1 x Salada Radish, 1 x Torradas de Parma, 1 x Chá de Canela,
-                    1 x Suco de Maracujá
-                  </td>
-                  <td>20/05 às 18h00</td>
-                </tr>
-                <tr>
-                  <td>
-                    <select>
-                      <option value="Pendente">🔴 Pendente</option>
-                      <option value="Preparando">🟠 Preparando</option>
-                      <option value="Entregue">🟢 Entregue</option>
-                    </select>
-                  </td>
-                  <td>00000004</td>
-                  <td>
-                    1 x Salada Radish, 1 x Torradas de Parma, 1 x Chá de Canela,
-                    1 x Suco de Maracujá
-                  </td>
-                  <td>20/05 às 18h00</td>
-                </tr>
+                {orderHistory &&
+                  orderHistory.map((item, index) => {
+                    return (
+                      <>
+                        <tr key={String(index)}>
+                          <td>
+                            <select
+                              value={item.status}
+                              onChange={(e) => handleOptionStatus(e.target.value, item.id)}
+                            >
+                              <option value="Pendente">🔴 Pendente</option>
+                              <option value="Preparando">🟠 Preparando</option>
+                              <option value="Entregue">🟢 Entregue</option>
+                            </select>
+                          </td>
+                          <td>00000004</td>
+                          <td>{item.detailing}</td>
+                          <td>{formatDateTime(item.created_at)}</td>
+                        </tr>
+                      </>
+                    );
+                  })}
               </tbody>
             </table>
           </div>

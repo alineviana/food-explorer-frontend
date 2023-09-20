@@ -20,7 +20,8 @@ import { useAuth } from "../../hooks/auth";
 export function Order() {
   const { user } = useAuth();
   const [order, setOrder] = useState([]);
-  const [removeOrder, setRemoveOrder] = useState([]);
+  const [removeItemOrder, setRemoveItemOrder] = useState([]);
+  const [total, setTotal] = useState(0);
   const [pix, setPix] = useState(false);
   const [credit, setCredit] = useState(true);
   const navigate = useNavigate();
@@ -30,8 +31,6 @@ export function Order() {
   }
 
   async function handlePix() {
-    // await api.put(`/orders/${user.id}`, { payment_method: "pix" });
-
     const pix = document.querySelector("#pix");
     const credit = document.querySelector("#credit");
 
@@ -43,8 +42,6 @@ export function Order() {
   }
 
   async function handleCredit() {
-    // await api.put(`/orders/${user.id}`, { payment_method: "credit" });
-
     const pix = document.querySelector("#pix");
     const credit = document.querySelector("#credit");
 
@@ -53,6 +50,10 @@ export function Order() {
 
     pix.classList.add("hidden");
     credit.classList.remove("hidden");
+  }
+
+  async function orderHistory() {
+    await api.post(`/orderHistory/${user.id}`);
   }
 
   function paymentFlow() {
@@ -67,6 +68,8 @@ export function Order() {
       approvedPayment.classList.add("hidden");
       delivered.classList.remove("hidden");
     }, 5000);
+
+    orderHistory();
   }
 
   async function handlePayment() {
@@ -101,10 +104,19 @@ export function Order() {
 
   useEffect(() => {
     async function removeDish() {
-      await api.delete(`/order/${removeOrder}/${user.id}`);
+      await api.delete(`/order/${removeItemOrder}/${user.id}`);
     }
     removeDish();
-  }, [removeOrder]);
+  }, [removeItemOrder]);
+
+  useEffect(() => {
+    let total = 0;
+
+    order.forEach((dish) => {
+      total += Number(dish.total_price);
+    });
+    setTotal(total);
+  }, [order]);
 
   useEffect(() => {
     const pix = document.querySelector("#pix");
@@ -153,7 +165,7 @@ export function Order() {
                       </h3>
                       <button
                         onClick={() => {
-                          setRemoveOrder(item.dish_id);
+                          setRemoveItemOrder(item.id);
                         }}
                       >
                         Excluir
@@ -163,7 +175,13 @@ export function Order() {
                 );
               })}
 
-            <p className="total_price">Total: 139,98</p>
+            <p className="total_price">
+              Total:{" "}
+              {total.toLocaleString("pt-BR", {
+                style: "currency",
+                currency: "BRL",
+              })}
+            </p>
             <ButtonText className="advance_button" title="Avançar" />
           </Section>
 
