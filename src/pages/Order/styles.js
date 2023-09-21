@@ -144,6 +144,7 @@ export const Link = styled.button`
 
 export const Pay = styled.div`
   background-color: ${({ theme }) => theme.COLORS.DARK_100};
+  display: none;
 
   section {
     margin-bottom: 6rem;

@@ -67,6 +67,7 @@ export const Form = styled.form`
         color: ${({ theme }) => theme.COLORS.LIGHT_100};
         border-radius: 8px;
         display: flex;
+        font-size: 1.2rem;
         height: 4.7rem;
         margin-top: 1.8rem;
         text-shadow: 1px 2px 1px rgba(0, 0, 0.6);

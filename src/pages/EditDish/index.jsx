@@ -20,76 +20,93 @@ export function EditDish() {
 
   const [ingredients, setIngredients] = useState([]);
   const [newIngredient, setNewIngredient] = useState([]);
-  const [oldIngredients, setOldIngredients] = useState([]);
   const [price, setPrice] = useState("");
 
   const [description, setDescription] = useState("");
-  
+  const [imageMessage, setImageMessage] = useState("Selecione a imagem para alterá-la");
+  const [data, setData] = useState(null);
+
   const params = useParams();
   const navigate = useNavigate();
-  
+
   function handleBack() {
     return navigate("/admin");
   }
-  
+
   function handleImage(e) {
     const file = e.target.files[0];
     setImage(file);
-  }
-  
-  async function handleUpdateDish() {
-    const updateDish = {
-      name: name,
-      category: category,
-      ingredients: JSON.stringify(ingredients, oldIngredients),
-      price: price,
-      description: description
-    };
 
-    const formData = new FormData();
-    
-    if (image) {
-      formData.append("image", image);
-
-      await api.patch(`/dishes/${params.id}`, formData);
+    if (file) {
+      setImageMessage(filename);
     }
-
-    await api.patch(`/dishes/${params.id}`, updateDish);
-    
-    alert("O prato foi editado com sucesso!");
-    handleBack();
   }
-  
+
   function handleAddIngredients() {
     setIngredients((prevState) => [...prevState, newIngredient]);
     setNewIngredient("");
   }
-  
+
   function handleRemoveIngredient(deleted) {
     setIngredients((prevState) =>
       prevState.filter((ingredient) => ingredient !== deleted)
     );
   }
- 
-  function handleRemoveOldIngredient(deleted) {
-    setOldIngredients((prevState) =>
-      prevState.filter((oldIngredient) => oldIngredient !== deleted)
-    );
+
+  async function handleUpdateDish() {
+    const formData = new FormData();
+
+    if (image) {
+      formData.append("image", image);
+    }
+
+    formData.append("name", name);
+    formData.append("category", category);
+    formData.append("price", price);
+    formData.append("description", description);
+
+    for (let i = 0; i < ingredients.length; i++) {
+      formData.append("ingredients[]", ingredients[i]);
+    }
+
+    await api.put(`/dishes/${params.id}`, formData);
+
+    alert("O prato foi editado com sucesso!");
+    handleBack();
   }
-  
+
   async function deleteDish() {
     const confirm = window.confirm("Tem certeza que deseja excluir o prato?");
-    
+
     if (confirm) {
       await api.delete(`/dishes/${params.id}`);
       alert("O prato foi excluído com sucesso!");
       handleBack();
     }
   }
-  
+
+  useEffect(() => {
+    async function getDish() {
+      const response = await api.get(`/dishes/${params.id}`);
+      setData(response.data);
+
+      const { image, name, category, ingredients, price, description } = response.data;
+
+      setImageMessage(image);
+      setName(name);
+      setCategory(category);
+      setIngredients(ingredients.map((ingredient) => ingredient.name));
+      setPrice(price);
+      setDescription(description);
+    }
+
+    getDish();
+  }, []);
+
   useEffect(() => {
     async function fetchDish() {
       const response = await api.get(`/dishes/${params.id}`);
+      setImageMessage(response.data[0].image);
       setName(response.data[0].name);
       setCategory(response.data[0].category);
       setPrice(response.data[0].price);
@@ -97,15 +114,6 @@ export function EditDish() {
     }
 
     fetchDish();
-  }, []);
-
-  useEffect(() => {
-    async function fetchIngredients() {
-      const response = await api.get(`/ingredients/${params.id}`);
-      setOldIngredients(response.data);
-    }
-
-    fetchIngredients();
   }, []);
 
   return (
@@ -118,7 +126,7 @@ export function EditDish() {
             <PiCaretLeft />
             <ButtonText
               className="voltar"
-              title="voltar" 
+              title="voltar"
               onClick={handleBack}
             />
           </header>
@@ -131,7 +139,7 @@ export function EditDish() {
                 <label for="uploadImage">
                   <div className="upload_image">
                     <PiUploadSimple />
-                    Selecione imagem para alterá-la
+                    {imageMessage}
                   </div>
                   <Input
                     name="uploadImage"
@@ -157,9 +165,7 @@ export function EditDish() {
             <div className="dish_category">
               <label>
                 Categoria
-                <select 
-                  onChange={(e) => setCategory(e.target.value)}
-                >
+                <select onChange={(e) => setCategory(e.target.value)}>
                   <option value="Refeições">Refeições</option>
                   <option value="Sobremesas">Sobremesas</option>
                   <option value="Bebidas">Bebidas</option>
@@ -179,14 +185,6 @@ export function EditDish() {
                       onClick={() => handleRemoveIngredient(ingredient)}
                     />
                   ))}
-                  {oldIngredients &&
-                    oldIngredients.map((oldIngredient, index) => (
-                      <Ingredients
-                        key={String(index)}
-                        value={oldIngredient.name}
-                        onClick={() => handleRemoveOldIngredient(oldIngredient)}
-                      />
-                    ))}
                   <Ingredients
                     isNew
                     placeholder="Adicionar"

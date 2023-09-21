@@ -69,7 +69,36 @@ export function OrdersAdmin() {
           <ButtonText title="voltar" onClick={handleBack} />
         </Link>
 
-        <Section className="details" title="Histórico de Pedidos">
+        <Section className="table_mobile" title="Pedidos">
+          {orderHistory &&
+            orderHistory.map((item, index) => {
+              return (
+                <section key={String(index)}>
+                  <div className="order">
+                    <ul className="each_order">
+                      <li>code</li>
+                      <li>{formatDateTime(item.created_at)}</li>
+                    </ul>
+                    <div className="details">{item.detailing}</div>
+                    <div className="status">
+                      <select
+                        value={item.status}
+                        onChange={(e) =>
+                          handleOptionStatus(e.target.value, item.id)
+                        }
+                      >
+                        <option value="Pendente">🔴 Pendente</option>
+                        <option value="Preparando">🟠 Preparando</option>
+                        <option value="Entregue">🟢 Entregue</option>
+                      </select>
+                    </div>
+                  </div>
+                </section>
+              );
+            })}
+        </Section>
+
+        <Section className="table_desktop" title="Histórico de Pedidos">
           <div className="table">
             <table>
               <thead>

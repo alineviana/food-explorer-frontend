@@ -18,20 +18,27 @@ export function OrderHistory() {
   }
 
   function fetchStatusColor(status) {
-    if (status === 'Pendente') {
-      return "🔴 Pendente"
-    } else if(status === 'Preparando') {
-      return "🟠 Preparando"
+    if (status === "Pendente") {
+      return "🔴 Pendente";
+    } else if (status === "Preparando") {
+      return "🟠 Preparando";
     }
-    return "🟢 Entregue"
+    return "🟢 Entregue";
   }
 
   function formatDateTime(dateTime) {
     const dateTimeString = new Date(dateTime);
 
-    const formatDate = dateTimeString.toLocaleDateString("pt-BR", {day: "2-digit", month: "2-digit", year: "numeric"});
+    const formatDate = dateTimeString.toLocaleDateString("pt-BR", {
+      day: "2-digit",
+      month: "2-digit",
+      year: "numeric",
+    });
 
-    const formatTime = dateTimeString.toLocaleTimeString("pt-BR", {hour: "2-digit", minute: "2-digit"});
+    const formatTime = dateTimeString.toLocaleTimeString("pt-BR", {
+      hour: "2-digit",
+      minute: "2-digit",
+    });
 
     return `${formatDate} às ${formatTime}`;
   }
@@ -63,7 +70,26 @@ export function OrderHistory() {
           <PiCaretLeft />
           <ButtonText title="voltar" onClick={handleBack} />
         </Link>
-        <Section className="details" title="Histórico de Pedidos">
+
+        <Section className="table_mobile" title="Pedidos">
+          {orderHistory &&
+            orderHistory.map((item, index) => {
+              return (
+                <section key={String(index)}>
+                  <div className="order">
+                    <ul className="each_order">
+                      <li>code</li>
+                      <li>{fetchStatusColor(item.status)}</li>
+                      <li>{formatDateTime(item.created_at)}</li>
+                    </ul>
+                    <div className="details">{item.detailing}</div>
+                  </div>
+                </section>
+              );
+            })}
+        </Section>
+
+        <Section className="table_desktop" title="Histórico de Pedidos">
           <div className="table">
             <table>
               <thead>
@@ -75,7 +101,7 @@ export function OrderHistory() {
                 </tr>
               </thead>
 
-              <tbody>
+              <tbody className="desktop">
                 {orderHistory &&
                   orderHistory.map((item, index) => {
                     return (
