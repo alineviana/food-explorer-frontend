@@ -11,6 +11,7 @@ import {
   Receipt,
   Logout,
 } from "./styles";
+import { SidebarAdmin } from "../SidebarAdmin";
 import { Input } from "../../components/Input";
 import { AiOutlineMenu } from "react-icons/ai";
 import { BsHexagonFill } from "react-icons/bs";
@@ -22,7 +23,12 @@ import { LuLogOut } from "react-icons/lu";
 export function HeaderAdmin({ setSearch }) {
   const { signOut, user } = useAuth();
   const navigate = useNavigate();
+  const [sidebar, setSidebar] = useState(false);
   const [order, setOrder] = useState([]);
+
+  function showSiderbar() {
+    setSidebar(!sidebar);
+  }
 
   function handleHome() {
     navigate("/admin");
@@ -49,7 +55,6 @@ export function HeaderAdmin({ setSearch }) {
     async function getOrder() {
       const response = await api.get(`/orderhistory`);
       setOrder(response.data);
-      console.log(response.data)
     }
     getOrder();
   }, [order]);
@@ -57,7 +62,8 @@ export function HeaderAdmin({ setSearch }) {
   return (
     <Container>
       <Menu>
-        <AiOutlineMenu />
+        <AiOutlineMenu onClick={showSiderbar} />
+        {sidebar && <SidebarAdmin active={setSidebar} setSearch={setSearch} />}
       </Menu>
 
       <Logo onClick={handleHome}>
