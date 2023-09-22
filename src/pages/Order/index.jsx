@@ -19,75 +19,83 @@ import { useAuth } from "../../hooks/auth";
 
 export function Order() {
   const { user } = useAuth();
+  const navigate = useNavigate();
   const [order, setOrder] = useState([]);
   const [removeItemOrder, setRemoveItemOrder] = useState([]);
   const [total, setTotal] = useState(0);
   const [pix, setPix] = useState(false);
-  const [credit, setCredit] = useState(true);
-  const navigate = useNavigate();
+  const [credit, setCredit] = useState(false);
+  const [awaitPayment, setAwaitPayment] = useState(false);
+  const [approvedPayment, setApprovedPayment] = useState(false);
 
   function handleBack() {
     navigate(-1);
   }
 
-  async function handlePix() {
-    const pix = document.querySelector("#pix");
-    const credit = document.querySelector("#credit");
+  function handlePayment() {
+    const detailsOrders = document.querySelector("#details");
+    const detailsPayment = document.querySelector("#payment");
 
-    setPix(true);
-    setCredit(false);
-
-    pix.classList.remove("hidden");
-    credit.classList.add("hidden");
+    detailsOrders.classList.add("hidden");
+    detailsPayment.classList.remove("hidden");
   }
 
-  async function handleCredit() {
+  async function handleCreditPayment() {
     const pix = document.querySelector("#pix");
     const credit = document.querySelector("#credit");
 
     setPix(false);
+    setAwaitPayment(false);
+    setApprovedPayment(false);
     setCredit(true);
 
     pix.classList.add("hidden");
     credit.classList.remove("hidden");
   }
 
+  async function handlePixPayment() {
+    const pix = document.querySelector("#pix");
+    const credit = document.querySelector("#credit");
+    const awaitPayment = document.querySelector("#awaitPayment");
+    const approvedPayment = document.querySelector("#approvedPayment");
+
+    setPix(true);
+    setCredit(false);
+    setAwaitPayment(false);
+    setApprovedPayment(false);
+
+    pix.classList.remove("hidden");
+    credit.classList.add("hidden");
+    awaitPayment.classList.add("hidden");
+    approvedPayment.classList.add("hidden");
+  }
+
+  async function handleApprovedPayment() {
+    const awaitPayment = document.querySelector("#awaitPayment");
+    const approvedPayment = document.querySelector("#approvedPayment");
+
+    setTimeout(() => {
+      awaitPayment.classList.add("hidden");
+      approvedPayment.classList.remove("hidden");
+    }, 3000);
+  }
+
   async function orderHistory() {
     await api.post(`/orderHistory/${user.id}`);
   }
 
-  function paymentFlow() {
-    const awaitPayment = document.querySelector("#awaitPayment");
-    const approvedPayment = document.querySelector("#approvedPayment");
-    const delivered = document.querySelector("#delivered");
-
-    awaitPayment.classList.add("hidden");
-    approvedPayment.classList.remove("hidden");
-
-    setTimeout(() => {
-      approvedPayment.classList.add("hidden");
-      delivered.classList.remove("hidden");
-    }, 5000);
-
-    orderHistory();
-  }
-
-  async function handlePayment() {
+  async function finalizePayment() {
     const credit = document.querySelector("#credit");
-    const pix = document.querySelector("#pix");
     const awaitPayment = document.querySelector("#awaitPayment");
-    const approvedPayment = document.querySelector("#approvedPayment");
-    const delivered = document.querySelector("#delivered");
+    
+    setPix(false);
+    setCredit(false);
 
     credit.classList.add("hidden");
-    pix.classList.add("hidden");
     awaitPayment.classList.remove("hidden");
-    approvedPayment.classList.add("hidden");
-    delivered.classList.add("hidden");
 
-    setTimeout(() => {
-      paymentFlow();
-    }, 4000);
+    handleApprovedPayment();
+    orderHistory();
   }
 
   useEffect(() => {
@@ -95,7 +103,7 @@ export function Order() {
       const response = await api.get(`/order/${user.id}`);
       setOrder(response.data);
       localStorage.setItem(
-        "@foodexplorer:total",
+        "@foodexplorer:ordersCart",
         JSON.stringify(response.data)
       );
     }
@@ -123,14 +131,12 @@ export function Order() {
     const credit = document.querySelector("#credit");
     const awaitPayment = document.querySelector("#awaitPayment");
     const approvedPayment = document.querySelector("#approvedPayment");
-    const delivered = document.querySelector("#delivered");
 
     pix.classList.add("hidden");
     awaitPayment.classList.add("hidden");
     approvedPayment.classList.add("hidden");
-    delivered.classList.add("hidden");
     credit.classList.remove("hidden");
-  }, []);
+  }, [setOrder, setPix, setCredit]);
 
   return (
     <Container>
@@ -142,7 +148,7 @@ export function Order() {
         </Link>
 
         <div className="sections_wrapper">
-          <Section className="details" title="Meu pedido">
+          <Section className="details" id="details" title="Meu pedido">
             {order &&
               order.map((item, index) => {
                 return (
@@ -182,66 +188,71 @@ export function Order() {
                 currency: "BRL",
               })}
             </p>
-            <ButtonText className="advance_button" title="Avançar" />
+            <ButtonText
+              className="advance_button"
+              title="Avançar"
+              onClick={handlePayment}
+            />
           </Section>
 
           <Pay>
             <Section className="payment" title="Pagamento">
-              <div className="wrapper">
-                <div className="section_wrapper_credit">
-                  <div className="buttons_wrapper">
+              <div className="section_wrapper">
+                <div className="buttons_wrapper">
+                  <div className="credit_button">
                     <button
-                      className={`payment-credit ${credit ? "true" : "false"}`}
-                      onClick={handleCredit}
+                      className={`${credit ? "true" : "hidden"}`}
+                      onClick={handleCreditPayment}
                     >
                       <img src={creditoImg} alt="Imagem de cartão de crédito" />
-                      <span>Crédito</span>
+                      Crédito
                     </button>
-
+                  </div>
+                  <div className="pix_button">
                     <button
-                      className={`payment-pix ${pix ? "true" : "false"}`}
-                      onClick={handlePix}
+                      className={`${pix ? "true" : "hidden"}`}
+                      onClick={handlePixPayment}
                     >
                       <img src={pixImg} alt="Imagem PIX" />
-                      <span>PIX</span>
+                      PIX
                     </button>
                   </div>
+                </div>
 
-                  <div className="data_pay" id="credit">
-                    <Form>
+                <div className="data_pay" id="credit">
+                  <Form>
+                    <label>
+                      Número do Cartão
+                      <input
+                        disabled
+                        placeholder="0000 0000 0000 0000"
+                        type="number"
+                      />
+                    </label>
+
+                    <div className="validity_and_cvc">
                       <label>
-                        Número do Cartão
-                        <input
-                          disabled
-                          placeholder="0000 0000 0000 0000"
-                          type="number"
-                        />
+                        Validade
+                        <input disabled placeholder="04/25" type="number" />
                       </label>
 
-                      <div className="validity_and_cvc">
-                        <label>
-                          Validade
-                          <input disabled placeholder="04/25" type="number" />
-                        </label>
+                      <label>
+                        CVC
+                        <input disabled placeholder="000" type="number" />
+                      </label>
+                    </div>
 
-                        <label>
-                          CVC
-                          <input disabled placeholder="000" type="number" />
-                        </label>
-                      </div>
-
-                      <Button
-                        icon={PiReceiptBold}
-                        title="Finalizar pagamento"
-                        onClick={handlePayment}
-                      />
-                    </Form>
-                  </div>
+                    <Button
+                      icon={PiReceiptBold}
+                      title="Finalizar pagamento"
+                      onClick={finalizePayment}
+                    />
+                  </Form>
                 </div>
 
                 <div className="section_wrapper_pix">
                   <img
-                    className="qrcode_image"
+                    className="payment-pix"
                     src={qrcodeImg}
                     alt="Imagem QRCODE"
                     id="pix"
@@ -253,16 +264,13 @@ export function Order() {
                     src={relogioImg}
                     alt="Imagem de um relógio"
                     id="awaitPayment"
+                    className={`${awaitPayment ? "true" : "hidden"}`}
                   />
                   <img
                     src={payApprovedImg}
                     alt="Imagem de sinal de visto"
                     id="approvedPayment"
-                  />
-                  <img
-                    src={deliveredImg}
-                    alt="Imagem de um garfo e uma faca"
-                    id="delivered"
+                    className={`${approvedPayment ? "true" : "hidden"}`}
                   />
                 </div>
               </div>
