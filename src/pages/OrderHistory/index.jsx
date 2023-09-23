@@ -72,38 +72,45 @@ export function OrderHistory() {
         </Link>
 
         <Section className="table_mobile" title="Pedidos">
-          {orderHistory &&
-            orderHistory.map((item, index) => {
-              return (
-                <section key={String(index)}>
-                  <div className="order">
-                    <ul className="each_order">
-                      <li>code</li>
-                      <li>{fetchStatusColor(item.status)}</li>
-                      <li>{formatDateTime(item.created_at)}</li>
-                    </ul>
-                    <div className="details">{item.detailing}</div>
-                  </div>
-                </section>
-              );
-            })}
+          {orderHistory.length > 0 ? (
+            <>
+              {orderHistory.map((item, index) => {
+                return (
+                  <section key={String(index)}>
+                    <div className="order">
+                      <ul className="each_order">
+                        <li>code</li>
+                        <li>{fetchStatusColor(item.status)}</li>
+                        <li>{formatDateTime(item.created_at)}</li>
+                      </ul>
+                      <div className="details">{item.detailing}</div>
+                    </div>
+                  </section>
+                );
+              })}
+            </>
+          ) : (
+            <p className="dish_not_registered">
+              Nenhum pedido foi realizado.
+            </p>
+          )}
         </Section>
 
         <Section className="table_desktop" title="Histórico de Pedidos">
-          <div className="table">
-            <table>
-              <thead>
-                <tr>
-                  <th>Status</th>
-                  <th>Código</th>
-                  <th>Detalhamento</th>
-                  <th>Data e hora</th>
-                </tr>
-              </thead>
+          {orderHistory.length > 0 ? (
+            <div className="table">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Status</th>
+                    <th>Código</th>
+                    <th>Detalhamento</th>
+                    <th>Data e hora</th>
+                  </tr>
+                </thead>
 
-              <tbody className="desktop">
-                {orderHistory &&
-                  orderHistory.map((item, index) => {
+                <tbody className="desktop">
+                  {orderHistory.map((item, index) => {
                     return (
                       <>
                         <tr key={String(index)}>
@@ -115,9 +122,14 @@ export function OrderHistory() {
                       </>
                     );
                   })}
-              </tbody>
-            </table>
-          </div>
+                </tbody>
+              </table>
+            </div>
+          ) : (
+            <p className="dish_not_registered">
+              Nenhum pedido foi realizado.
+            </p>
+          )}
         </Section>
       </main>
 

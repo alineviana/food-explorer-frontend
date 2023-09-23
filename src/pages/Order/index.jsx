@@ -129,10 +129,12 @@ export function Order() {
   useEffect(() => {
     const pix = document.querySelector("#pix");
     const credit = document.querySelector("#credit");
+    const payment = document.querySelector("#payment");
     const awaitPayment = document.querySelector("#awaitPayment");
     const approvedPayment = document.querySelector("#approvedPayment");
 
     pix.classList.add("hidden");
+    payment.classList.add("hidden");
     awaitPayment.classList.add("hidden");
     approvedPayment.classList.add("hidden");
     credit.classList.remove("hidden");
@@ -196,7 +198,7 @@ export function Order() {
           </Section>
 
           <Pay>
-            <Section className="payment" title="Pagamento">
+            <Section className="payment" title="Pagamento" id="payment">
               <div className="section_wrapper">
                 <div className="buttons_wrapper">
                   <div className="credit_button">

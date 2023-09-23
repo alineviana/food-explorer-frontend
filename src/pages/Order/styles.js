@@ -218,6 +218,24 @@ export const Pay = styled.div`
   .data_pay {
     margin: 5rem 2rem;
   }
+
+  @media (min-width: 1024px) {
+    #payment {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .section_wrapper {
+      width: 45rem;
+    }
+
+    .buttons_wrapper {
+      .credit_button,
+      .pix_button {
+        width: 22rem;
+      }
+    }
+  }
 `;
 
 export const Form = styled.form`

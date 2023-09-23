@@ -16,7 +16,9 @@ function AuthProvider({ children }) {
             localStorage.setItem("@foodexplorer:token", token);
 
             api.defaults.headers.common['Authorization'] = `Bearer ${token}`;
-            setData({ user, token });
+
+            const userData = { ...user, isAdmin: user.is_admin === 1 };
+            setData({ user: userData, token });
 
         } catch(error) {   
             if(error.response) {
@@ -41,8 +43,10 @@ function AuthProvider({ children }) {
         if(token && user) {
             api.defaults.headers.common['Authorization'] = `Bearer ${token}`;
 
+            const userData = { ...JSON.parse(user), isAdmin: JSON.parse(user).is_admin === 1 };
+
             setData({
-                user: JSON.parse(user),
+                user: userData,
                 token
             });
         }
