@@ -12,7 +12,7 @@ export function AppRoutes() {
             <Route path='/dishes/:id' element={<Dishes />} />          
             <Route path='/order' element={<Order />} />
             <Route path='/favorites' element={<Favorites />} />
-            <Route path='/orderhistory' element={<OrderHistory />} />
+            <Route path='/orderhistory/:id' element={<OrderHistory />} />
         </Routes>
     )
 }

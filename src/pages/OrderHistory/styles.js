@@ -12,10 +12,14 @@ export const Container = styled.div`
     "content"
     "footer";
 
+  main {
+    background-color: ${({ theme }) => theme.COLORS.DARK_100};
+  }
+  
   .table_desktop {
     display: none;
   }
-
+  
   h2 {
     color: ${({ theme }) => theme.COLORS.LIGHT_300};
     font-family: "Poppins", serif;

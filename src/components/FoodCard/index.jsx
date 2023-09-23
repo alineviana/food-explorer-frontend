@@ -67,14 +67,6 @@ export function FoodCard({
     alert("O prato foi adicionado ao carrinho!");
   }
 
-  // async function setDishInList() {
-  //   const response = await api.get(`/order/${user.id}`);
-    
-  //   const applicationLength = response.data.length;
-
-  //   localStorage.setItem("@foodexplorer:applicationLength", applicationLength);
-  // }
-
   useEffect(() => {
     async function checkFavorite() {
       try {

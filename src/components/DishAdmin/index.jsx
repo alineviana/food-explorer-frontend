@@ -13,7 +13,7 @@ export function DishAdmin() {
   const navigate = useNavigate();
 
   function handleBackHome() {
-    navigate("/admin");
+    navigate("/");
   }
 
   function editDish() {

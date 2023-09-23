@@ -3,6 +3,7 @@ import styled from "styled-components";
 export const Container = styled.div`
   background: ${({ theme }) => theme.COLORS.DARK_100};
   display: grid;
+  height: 100vh;
   width: 100%;
 
   grid-template-rows: 11.4rem auto 7.7rem;
@@ -24,6 +25,14 @@ export const Container = styled.div`
     font-family: "Poppins", serif;
     font-size: 2.8rem;
     margin: 2.5rem 0 0 3rem;
+  }
+
+  .dish_not_registered {
+    color: ${({ theme }) => theme.COLORS.TOMATO_300};
+    font-family: "Poppins", serif;
+    font-size: 2rem;
+    margin: 3rem;
+    text-align: center;
   }
 
   .order {

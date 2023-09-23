@@ -39,7 +39,7 @@ export function Header({ setSearch }) {
   }
 
   function handleOrderHistory() {
-    navigate("/orderhistory");
+    navigate(`/orderhistory/${user.id}`);
   }
 
   function handleOrder() {

@@ -11,10 +11,9 @@ import { Footer } from "../../components/Footer";
 export function OrdersAdmin() {
   const navigate = useNavigate();
   const [orderHistory, setOrderHistory] = useState([]);
-  const user = JSON.parse(localStorage.getItem("@foodexplorer:user"));
 
   function handleBack() {
-    navigate(-1);
+    navigate("/");
   }
 
   const handleOptionStatus = async (value, id) => {
@@ -44,7 +43,7 @@ export function OrdersAdmin() {
   useEffect(() => {
     try {
       async function getOrderHistory() {
-        const response = await api.get(`/orderhistory/${user.id}`);
+        const response = await api.get(`/orderhistory`);
         setOrderHistory(response.data);
       }
       getOrderHistory();
@@ -70,35 +69,41 @@ export function OrdersAdmin() {
         </Link>
 
         <Section className="table_mobile" title="Pedidos">
-          {orderHistory &&
-            orderHistory.map((item, index) => {
-              return (
-                <section key={String(index)}>
-                  <div className="order">
-                    <ul className="each_order">
-                      <li>code</li>
-                      <li>{formatDateTime(item.created_at)}</li>
-                    </ul>
-                    <div className="details">{item.detailing}</div>
-                    <div className="status">
-                      <select
-                        value={item.status}
-                        onChange={(e) =>
-                          handleOptionStatus(e.target.value, item.id)
-                        }
-                      >
-                        <option value="Pendente">🔴 Pendente</option>
-                        <option value="Preparando">🟠 Preparando</option>
-                        <option value="Entregue">🟢 Entregue</option>
-                      </select>
+          {orderHistory.length > 0 ? (
+            <>
+              {orderHistory.map((item, index) => {
+                return (
+                  <section key={String(index)}>
+                    <div className="order">
+                      <ul className="each_order">
+                        <li>code</li>
+                        <li>{formatDateTime(item.created_at)}</li>
+                      </ul>
+                      <div className="details">{item.detailing}</div>
+                      <div className="status">
+                        <select
+                          value={item.status}
+                          onChange={(e) =>
+                            handleOptionStatus(e.target.value, item.id)
+                          }
+                        >
+                          <option value="Pendente">🔴 Pendente</option>
+                          <option value="Preparando">🟠 Preparando</option>
+                          <option value="Entregue">🟢 Entregue</option>
+                        </select>
+                      </div>
                     </div>
-                  </div>
-                </section>
-              );
-            })}
+                  </section>
+                );
+              })}
+            </>
+          ) : (
+            <p className="dish_not_registered">Nenhum pedido foi realizado.</p>
+          )}
         </Section>
 
         <Section className="table_desktop" title="Histórico de Pedidos">
+        {orderHistory.length > 0 ? (
           <div className="table">
             <table>
               <thead>
@@ -111,15 +116,16 @@ export function OrdersAdmin() {
               </thead>
 
               <tbody>
-                {orderHistory &&
-                  orderHistory.map((item, index) => {
+                {orderHistory.map((item, index) => {
                     return (
                       <>
                         <tr key={String(index)}>
                           <td>
                             <select
                               value={item.status}
-                              onChange={(e) => handleOptionStatus(e.target.value, item.id)}
+                              onChange={(e) =>
+                                handleOptionStatus(e.target.value, item.id)
+                              }
                             >
                               <option value="Pendente">🔴 Pendente</option>
                               <option value="Preparando">🟠 Preparando</option>
@@ -136,6 +142,11 @@ export function OrdersAdmin() {
               </tbody>
             </table>
           </div>
+           ) : (
+            <p className="dish_not_registered">
+              Nenhum pedido foi realizado.
+            </p>
+          )}
         </Section>
       </main>
 

@@ -4,6 +4,7 @@ import { useAuth } from "../../hooks/auth";
 import { api } from "../../services/api";
 import { Container, Link } from "./styles";
 import { Header } from "../../components/Header";
+import { HeaderAdmin } from "../../components/HeaderAdmin";
 import { PiCaretLeft } from "react-icons/pi";
 import { ButtonText } from "../../components/ButtonText";
 import { Section } from "../../components/Section";
@@ -35,7 +36,7 @@ export function Favorites() {
 
   return (
     <Container>
-      <Header />
+      {  user.Admin ? <HeaderAdmin /> : <Header /> }
 
       <main>
         <Link>
