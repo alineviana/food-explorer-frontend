@@ -41,7 +41,11 @@ export function Sidebar({ active, setSearch }) {
       </div>
 
       <Content>
-        <ButtonText title="Meus favoritos" onClick={handleFavorites} className="my_favorites" />
+        <ButtonText
+          title="Meus favoritos"
+          onClick={handleFavorites}
+          className="my_favorites"
+        />
         <ButtonText title="Sair" onClick={handleSignOut} />
       </Content>
     </Container>

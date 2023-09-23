@@ -4,11 +4,11 @@ export const Container = styled.div`
   background-color: ${({ theme }) => theme.COLORS.DARK_100};
   color: ${({ theme }) => theme.COLORS.LIGHT_100};
   height: 100%;
-  left: ${(props) => (props.sidebar ? "0" : "-100%")};
+  left: 0px;
   position: fixed;
   top: 0px;
   width: 40rem;
-  z-index: 2;
+  z-index: 10;
 
   animation: showSidebar 0.4s;
 
@@ -58,7 +58,7 @@ export const Content = styled.div`
     border-bottom-width: 1px;
     color: ${({ theme }) => theme.COLORS.LIGHT_100};
     cursor: pointer;
-    
+
     display: flex;
     font-family: "Poppins", serif;
     font-size: 2.2rem;
