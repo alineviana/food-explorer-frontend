@@ -9,7 +9,7 @@ import { OrdersAdmin } from '../pages/OrdersAdmin';
 export function AdminRoutes() {
     return(
         <Routes>
-            <Route path='/admin' element={<HomeAdmin />} />
+            <Route path='/' element={<HomeAdmin />} />
             <Route path='/dishesadmin/:id' element={<DishesAdmin />} />
             <Route path='/editdish/:id' element={<EditDish />} />
             <Route path='/newdish' element={<NewDish />} />

@@ -17,7 +17,8 @@ function AuthProvider({ children }) {
 
             api.defaults.headers.common['Authorization'] = `Bearer ${token}`;
 
-            const userData = { ...user, isAdmin: user.is_admin === 1 };
+            const userData = { ...user, Admin: user.isAdmin === 1 };
+            
             setData({ user: userData, token });
 
         } catch(error) {   
@@ -43,7 +44,7 @@ function AuthProvider({ children }) {
         if(token && user) {
             api.defaults.headers.common['Authorization'] = `Bearer ${token}`;
 
-            const userData = { ...JSON.parse(user), isAdmin: JSON.parse(user).is_admin === 1 };
+            const userData = { ...JSON.parse(user), admin: JSON.parse(user).isAdmin === 1 };
 
             setData({
                 user: userData,

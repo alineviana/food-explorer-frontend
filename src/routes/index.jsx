@@ -6,10 +6,10 @@ import { AuthRoutes } from "./auth.routes";
 
 export function Routes() {
   const { user } = useAuth();
-
+ 
   return (
     <BrowserRouter>
-     {  user ? (user.isAdmin ? <AdminRoutes /> : <AppRoutes />) : <AuthRoutes /> }
+     {  user ? (user.Admin ? <AdminRoutes /> : <AppRoutes />) : <AuthRoutes /> }
     </BrowserRouter>
   );
 }

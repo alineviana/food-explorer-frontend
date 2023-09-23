@@ -31,7 +31,7 @@ export function HeaderAdmin({ setSearch }) {
   }
 
   function handleHome() {
-    navigate("/admin");
+    navigate("/");
   }
 
   function handleMyFavorites() {

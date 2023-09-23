@@ -30,7 +30,7 @@ export function EditDish() {
   const navigate = useNavigate();
 
   function handleBack() {
-    return navigate("/admin");
+    return navigate("/");
   }
 
   function handleImage(e) {
