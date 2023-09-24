@@ -12,7 +12,6 @@ import creditoImg from "../../assets/credito.svg";
 import qrcodeImg from "../../assets/qrcode.svg";
 import relogioImg from "../../assets/relogio.svg";
 import payApprovedImg from "../../assets/payApproved.svg";
-import deliveredImg from "../../assets/delivered.svg";
 import { PiReceiptBold } from "react-icons/pi";
 import { Footer } from "../../components/Footer";
 import { useAuth } from "../../hooks/auth";

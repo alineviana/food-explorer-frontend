@@ -1,16 +1,7 @@
 import { useAuth } from "../../hooks/auth";
 import { useState, useEffect } from "react";
 import { api } from "../../services/api";
-import {
-  Container,
-  Menu,
-  Logo,
-  Search,
-  Favorites,
-  Order,
-  Receipt,
-  Logout,
-} from "./styles";
+import { Container, Menu, Logo, Search, Favorites, Order, Receipt, Logout } from "./styles";
 import { SidebarAdmin } from "../SidebarAdmin";
 import { Input } from "../../components/Input";
 import { AiOutlineMenu } from "react-icons/ai";
@@ -21,7 +12,7 @@ import { PiReceiptBold } from "react-icons/pi";
 import { LuLogOut } from "react-icons/lu";
 
 export function HeaderAdmin({ setSearch }) {
-  const { signOut, user } = useAuth();
+  const { signOut } = useAuth();
   const navigate = useNavigate();
   const [sidebar, setSidebar] = useState(false);
   const [order, setOrder] = useState([]);

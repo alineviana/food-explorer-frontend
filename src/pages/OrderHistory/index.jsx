@@ -11,7 +11,6 @@ import { Footer } from "../../components/Footer";
 export function OrderHistory() {
   const navigate = useNavigate();
   const [orderHistory, setOrderHistory] = useState([]);
-  const [isOrderHistory, setIsOrderHistory] = useState([]);
   const user = JSON.parse(localStorage.getItem("@foodexplorer:user"));
 
   function handleBack() {

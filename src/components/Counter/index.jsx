@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { Container, Count } from "./style";
 import { FiMinus } from "react-icons/fi";
 import { FiPlus } from "react-icons/fi";

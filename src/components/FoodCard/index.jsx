@@ -8,15 +8,7 @@ import { VscChevronRight } from "react-icons/vsc";
 import { IoIosHeart } from "react-icons/io";
 import { IoIosHeartEmpty } from "react-icons/io";
 
-export function FoodCard({
-  data,
-  image,
-  name,
-  description,
-  price,
-  detailsDish,
-  ...rest
-}) {
+export function FoodCard({ data, image, name, description, price, detailsDish, ...rest }) {
   const [isFavorite, setIsFavorite] = useState(false);
   const [favoriteId, setFavoriteId] = useState(null);
   const { user } = useAuth();
@@ -63,7 +55,6 @@ export function FoodCard({
       user_id: user.id,
     });
 
-    // setDishInList();
     alert("O prato foi adicionado ao carrinho!");
   }
 

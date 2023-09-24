@@ -1,15 +1,6 @@
 import { useAuth } from "../../hooks/auth";
 import { useNavigate } from "react-router-dom";
-import {
-  Container,
-  Logo,
-  Search,
-  Menu,
-  Favorites,
-  Order,
-  Receipt,
-  Logout,
-} from "./styles";
+import { Container, Logo, Search, Menu, Favorites, Order, Receipt, Logout } from "./styles";
 import { api } from "../../services/api";
 import { Input } from "../../components/Input";
 import { AiOutlineMenu } from "react-icons/ai";
