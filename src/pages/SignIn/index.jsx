@@ -10,9 +10,12 @@ export function SignIn() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const { signIn } = useAuth();
+  const [loading, setLoading] = useState(false);
 
   function handleSignIn() {
-    signIn({ email, password });
+    setLoading(true);
+
+    signIn({ email, password }).finally(() => setLoading(false));
   }
 
   return (
@@ -27,27 +30,25 @@ export function SignIn() {
 
         <label>
           Email
-          <Input 
-            placeholder="Exemplo: exemplo@exemplo.com.br" 
+          <Input
+            placeholder="Exemplo: exemplo@exemplo.com.br"
             type="text"
-            onChange={e => setEmail(e.target.value)}
+            onChange={(e) => setEmail(e.target.value)}
           />
         </label>
 
         <label>
           Senha
-          <Input 
+          <Input
             placeholder="No mínimo 6 caracteres"
             type="password"
-            onChange={e => setPassword(e.target.value)}
+            onChange={(e) => setPassword(e.target.value)}
           />
         </label>
 
-        <Button title="Entrar" onClick={handleSignIn} />
+        <Button title="Entrar" onClick={handleSignIn} loading={loading} />
 
-        <Link to="/signup">
-          Criar uma conta
-        </Link>
+        <Link to="/signup">Criar uma conta</Link>
       </Form>
     </Container>
   );
